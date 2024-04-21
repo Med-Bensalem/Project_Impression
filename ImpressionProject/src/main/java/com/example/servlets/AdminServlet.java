@@ -1,0 +1,210 @@
+package com.example.servlets;
+
+import java.io.IOException;
+import java.util.List;
+
+import com.example.dao.*;
+import com.example.models.Enseignement;
+import com.example.models.Matiere;
+import com.example.models.Role;
+import com.example.models.User;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/AdminServlet")
+public class AdminServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    private UserDao userDao;
+
+    public void init() {
+        userDao = new UserDaoImp();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        
+        if (action == null || action.isEmpty()) {
+            action = "list"; // Default: list users
+        }
+
+        switch (action) {
+            case "list":
+                listUsers(request, response);
+                break;
+            case "add":
+                showAddForm(request, response);
+                break;
+            case "edit":
+                showEditForm(request, response);
+                break;
+            case "delete":
+                deleteUser(request, response);
+                break;
+            default:
+                listUsers(request, response);
+        }
+        
+        
+       
+        
+    }
+
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if (action == null || action.isEmpty()) {
+            action = "list"; // Default: list users
+        }
+
+        switch (action) {
+            case "add":
+                addUser(request, response);
+                break;
+            case "edit":
+                updateUser(request, response);
+                break;
+            default:
+                listUsers(request, response);
+        }
+    }
+
+    private void listUsers(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<User> userList = userDao.getAllUsers();
+        request.setAttribute("userList", userList);
+        request.getRequestDispatcher("userList.jsp").forward(request, response);
+    }
+
+    private void showAddForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    	MatiereDao matiereDao = new MatiereDaoImp();
+        List<Matiere> matieres = matiereDao.getAllMatieres();
+
+        // Passer la liste des matières à la JSP
+        request.setAttribute("matieres", matieres);
+        
+        RoleDao roleDao = new RoleDaoImp();
+        List<Role> roles = roleDao.getAllRoles();
+
+        // Passer la liste des matières à la JSP
+        request.setAttribute("roles", roles);
+    	
+        request.getRequestDispatcher("addUser.jsp").forward(request, response);
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        User user = userDao.getUserById(userId);
+        request.setAttribute("user", user);
+        MatiereDao matiereDao = new MatiereDaoImp();
+        List<Matiere> matieres = matiereDao.getAllMatieres();
+
+        // Passer la liste des matières à la JSP
+        request.setAttribute("matieres", matieres);
+        
+        RoleDao roleDao = new RoleDaoImp();
+        List<Role> roles = roleDao.getAllRoles();
+
+        // Passer la liste des matières à la JSP
+        request.setAttribute("roles", roles);
+        request.getRequestDispatcher("editUser.jsp").forward(request, response);
+    }
+
+    private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Récupérez les paramètres de la requête pour créer un nouvel utilisateur
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+        boolean active = Boolean.parseBoolean(request.getParameter("active"));
+        
+        if (userDao.getUserByUsername(username) != null) {
+            // Si un utilisateur avec le même nom d'utilisateur existe déjà, affichez un message d'erreur
+            request.setAttribute("error", "Le nom d'utilisateur est déjà utilisé");
+            // Redirigez l'utilisateur vers la page d'ajout d'utilisateur avec le message d'erreur
+            request.getRequestDispatcher("addUser.jsp").forward(request, response);
+            return; // Sortez de la méthode pour éviter d'ajouter l'utilisateur
+        }
+
+        // Créez un nouvel utilisateur avec les paramètres récupérés
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setEmail(email);
+        newUser.setRole(role);
+        newUser.setActive(active);
+
+        // Ajoutez l'utilisateur à la base de données
+        userDao.addUser(newUser);
+
+        // Redirigez l'utilisateur vers la page d'accueil
+        response.sendRedirect("AdminServlet");
+
+        // Si le rôle de l'utilisateur est "enseignant"
+        if (role.equals("enseignant")|| role.equals("Enseignant")) {
+            // Récupérez les matières enseignées sélectionnées depuis le formulaire
+            String[] matieresEnseigneesIds = request.getParameterValues("matieres");
+
+            // Si des matières ont été sélectionnées
+            if (matieresEnseigneesIds != null) {
+                // Initialisez le DAO pour les matières
+                MatiereDao matiereDao = new MatiereDaoImp();
+                // Initialisez le DAO pour les enseignements
+                EnseignementDao enseignementDao = new EnseignementDaoImp();
+
+                // Pour chaque matière sélectionnée
+                for (String matiereId : matieresEnseigneesIds) {
+                    // Créez un nouvel enseignement pour associer l'enseignant à la matière
+                    Enseignement enseignement = new Enseignement();
+                    enseignement.setEnseignantId(newUser.getUserId());
+                    enseignement.setMatiereId(Integer.parseInt(matiereId));
+
+                    // Ajoutez l'enseignement à la base de données
+                    enseignementDao.addEnseignement(enseignement);
+                }
+            }
+        }
+    }
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Retrieve form parameters
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+        boolean active = Boolean.parseBoolean(request.getParameter("active"));
+
+        // Create a new user with the parameters
+        User user = new User();
+        user.setUserId(userId);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setRole(role);
+        user.setActive(active);
+
+        // Update the user in the database
+        userDao.updateUser(user);
+
+        // Redirect to the list of users
+        response.sendRedirect("AdminServlet");
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        userDao.deleteUser(userId);
+        response.sendRedirect("AdminServlet");
+    }
+}

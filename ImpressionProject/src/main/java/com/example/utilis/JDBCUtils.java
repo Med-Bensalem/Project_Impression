@@ -5,19 +5,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCUtils {
-	public static Connection getConnection() {
-	    Connection connection = null;
+    private static final String URL = "jdbc:mysql://localhost:3306/gestion_impression";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
 
-	    try {
-	        // Chargement explicite du pilote JDBC
-	        Class.forName("com.mysql.cj.jdbc.Driver");
+    public static Connection getConnection() throws SQLException {
+        try {
+            // Chargement explicite du pilote JDBC
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Connexion à la base de données
+            return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (ClassNotFoundException e) {
+            // Si le pilote JDBC n'est pas trouvé
+            throw new SQLException("Le pilote JDBC n'a pas été trouvé", e);
+        }
+    }
 
-	        // Connexion à la base de données
-	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_impression", "root", "");
-	    } catch (SQLException | ClassNotFoundException e) {
-	        e.printStackTrace();
-	    }
-	    return connection;
-	}
-
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println("Erreur lors de la fermeture de la connexion : " + e.getMessage());
+            }
+        }
+    }
 }

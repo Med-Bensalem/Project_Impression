@@ -3,16 +3,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login Page</title>
 </head>
 <body>
-    <h2>Login</h2>
-    <% if (request.getParameter("error") != null && request.getParameter("error").equals("1")) { %>
-        <p style="color: red;">Invalid username or password</p>
-    <% } %>
-    <form action="login" method="post">
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
+    <form action="Login" method="post">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
         <input type="submit" value="Login">
     </form>
 </body>

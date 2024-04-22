@@ -58,7 +58,7 @@
                             <div class="position-relative">
                                 <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/bg-thumb.svg" alt="img" />
                                 <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/girl-image.png" alt="girl" class="w-100 w-md-auto position-absolute end-0 bottom-0" />
-                                <img src=".${pageContext.request.contextPath}/assets/images/background/acedamy-img/frame-1.svg" alt="frame" class="position-absolute top-0 ms-n8 d-none d-md-inline-block" />
+                               
                                 <img
                                     src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/frame-2.svg"
                                     alt="frame"

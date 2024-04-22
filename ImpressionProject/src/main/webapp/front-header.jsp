@@ -1,7 +1,10 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.example.models.User" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-0">
         <div class="d-flex">
-            <a class="navbar-brand" href="../../index.html"><img src="${pageContext.request.contextPath}/assets/images/brand/logo/logo.svg" alt="Geeks" /></a>
+            <a class="navbar-brand" href="/home"><img src="${pageContext.request.contextPath}/assets/images/brand/logo/logo.svg" alt="Geeks" /></a>
             <div class="dropdown d-none d-md-block">
                 <button class="btn btn-light-primary text-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fe fe-list me-2 align-middle"></i>
@@ -121,9 +124,64 @@
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="btn btn-icon btn-light rounded-circle d-none d-md-inline-flex ms-2"><i class="fe fe-shopping-cart align-middle"></i></a>
-                <a href="../sign-in.html" class="btn btn-outline-primary ms-2 d-none d-lg-block">Sign in</a>
-                <a href="../sign-up.html" class="btn btn-primary ms-2 d-none d-lg-block">Sign up</a>
+                	<%
+					  
+					    User user = (User) session.getAttribute("user");
+					%>
+               
+             		 <% if (user == null) { %>
+    				<!-- Display these links if user is not logged in -->
+					    <a href="/LoginServlet" class="btn btn-outline-primary ms-2 d-none d-lg-block">Sign in</a>
+					   
+					<% } else { %>
+					    <!-- Display these links if user is logged in -->
+					    <li class="dropdown ms-2 d-inline-block position-static">
+					        <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+					            <div class="avatar avatar-md avatar-indicators avatar-online">
+					                <img alt="avatar" src="${pageContext.request.contextPath}/assets/images/avatar/avatar-5.jpg" class="rounded-circle" />
+					            </div>
+					        </a>
+					        <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
+					            <div class="dropdown-item">
+					                <div class="d-flex">
+					                    <div class="avatar avatar-md avatar-indicators avatar-online">
+					                        <img alt="avatar" src="${pageContext.request.contextPath}/assets/images/avatar/avatar-5.jpg" class="rounded-circle" />
+					                    </div>
+					                    <div class="ms-3 lh-1">
+					                        <h5 class="mb-1"><%= user.getUsername() %></h5>
+                        					<p class="mb-0"><%= user.getEmail() %></p>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="dropdown-divider"></div>
+					            <ul class="list-unstyled">
+					               
+					                <li>
+					                    <a class="dropdown-item" href="profile-edit.html">
+					                        <i class="fe fe-user me-2"></i>
+					                        Profile
+					                    </a>
+					                </li>
+					               
+					                <li>
+					                    <a class="dropdown-item" href="#">
+					                        <i class="fe fe-settings me-2"></i>
+					                        Admin
+					                    </a>
+					                </li>
+					            </ul>
+					            <div class="dropdown-divider"></div>
+					            <ul class="list-unstyled">
+					                <li>
+					                    <a class="dropdown-item" href="LogoutServlet">
+					                        <i class="fe fe-power me-2"></i>
+					                        Sign Out
+					                    </a>
+					                </li>
+					            </ul>
+					        </div>
+					    </li>
+					<% } %>
                 <!-- Button -->
                 <button
                     class="navbar-toggler collapsed ms-2 ms-lg-0"

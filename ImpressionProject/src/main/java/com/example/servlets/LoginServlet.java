@@ -6,6 +6,7 @@ import com.example.dao.UserDao;
 import com.example.dao.UserDaoImp;
 import com.example.models.User;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +17,13 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+      
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request, response);
+    }
     
     private UserDao userDao = new UserDaoImp();
 

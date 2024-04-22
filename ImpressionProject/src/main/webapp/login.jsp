@@ -2,7 +2,10 @@
 <!doctype html>
 <html lang="en">
     
-<!-- Mirrored from geeksui.codescandy.com/geeks/pages/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 22 Apr 2024 20:37:21 GMT -->
+  
+
+
+
 <head>
         <!-- Required meta tags -->
 <meta charset="utf-8" />
@@ -12,19 +15,9 @@
 <meta name="author" content="Codescandy" />
 
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fonts/feather/feather.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/libs/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/libs/simplebar/dist/simplebar.min.css">
-    <!-- Link to your darkmode.js -->
-    <script src="${pageContext.request.contextPath}/assets/js/vendors/darkMode.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/theme.min.css">
-<!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico" />
+ 
 
-<!-- darkmode js -->
-<script src="${pageContext.request.contextPath}/assets/js/vendors/darkMode.js"></script>
-
-
+  <%@ include file="cssfiles.jsp" %>
 
 
         <link rel="canonical" href="sign-in.html">
@@ -112,16 +105,17 @@
                 </div>
             </div>
         </main>
-         <script src="${pageContext.request.contextPath}/assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
+    
+        <!-- Scripts -->
+        <!-- Libs JS -->
+             <script src="${pageContext.request.contextPath}/assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/libs/simplebar/dist/simplebar.min.js"></script>
     <!-- Include theme JS -->
     <script src="${pageContext.request.contextPath}/assets/js/theme.min.js"></script>
     <!-- Include validation JS -->
     <script src="${pageContext.request.contextPath}/assets/js/vendors/validation.js"></script>
-        <!-- Scripts -->
-        <!-- Libs JS -->
-
+	   <%@ include file="jsfiles.jsp" %>
     </body>
 
 <!-- Mirrored from geeksui.codescandy.com/geeks/pages/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 22 Apr 2024 20:37:21 GMT -->

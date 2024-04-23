@@ -131,7 +131,7 @@
                
              		 <% if (user == null) { %>
     				<!-- Display these links if user is not logged in -->
-					    <a href="/LoginServlet" class="btn btn-outline-primary ms-2 d-none d-lg-block">Sign in</a>
+					    <a href="LoginServlet" class="btn btn-outline-primary ms-2 d-none d-lg-block">Sign in</a>
 					   
 					<% } else { %>
 					    <!-- Display these links if user is logged in -->

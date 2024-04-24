@@ -69,5 +69,14 @@
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/HomeServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>GroupServlet</display-name>
+    <servlet-name>GroupServlet</servlet-name>
+    <servlet-class>com.example.servlets.GroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GroupServlet</servlet-name>
+    <url-pattern>/GroupServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -187,7 +187,7 @@ public class AdminServlet extends HttpServlet {
 
         // Create a new user with the parameters
         User user = new User();
-        user.setUserId(userId);
+       
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);

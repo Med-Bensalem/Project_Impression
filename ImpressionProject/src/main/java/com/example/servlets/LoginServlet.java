@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 
         // Retrieve user from database based on username and password
         User user = userDao.getUserByUsernameAndPassword(username, password);
+        System.out.println("User ID Retrieved: " + user.getUserId());
 
         if (user != null && user.isActive()) {
             // User found, set session attribute and redirect to home page

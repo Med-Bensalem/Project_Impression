@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Welcome, ${user.username}</h1>
+    ${user.userId}
     <a href="LogoutServlet">Logout</a>
 </body>
 </html>

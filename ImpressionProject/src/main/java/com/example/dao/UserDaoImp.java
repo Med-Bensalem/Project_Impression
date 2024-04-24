@@ -72,7 +72,7 @@ public class UserDaoImp implements UserDao {
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int userId = generatedKeys.getInt(1);
-                    user.setUserId(userId); // Mettez à jour l'ID de l'utilisateur avec l'ID généré
+                    
                 } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
@@ -130,7 +130,7 @@ public class UserDaoImp implements UserDao {
 
     private User extractUserFromResultSet(ResultSet resultSet) throws SQLException {
         User user = new User();
-       
+        user.setUserId(resultSet.getInt("user_id"));
         user.setUsername(resultSet.getString("username"));
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));

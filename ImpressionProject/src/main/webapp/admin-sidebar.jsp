@@ -2,7 +2,7 @@
             <div class="vh-100" data-simplebar>
                 <!-- Brand logo -->
                 <a class="navbar-brand" href="../../index.html">
-                    <img src="../../assets/images/brand/logo/logo-inverse.svg" alt="Geeks" />
+                    <img src="${pageContext.request.contextPath}/assets/images/brand/logo/logo-inverse.svg" alt="Geeks" />
                 </a>
                 <!-- Navbar nav -->
                 <ul class="navbar-nav flex-column" id="sideNavbar">

@@ -12,7 +12,7 @@ import com.example.utilis.JDBCUtils;
 public class EnseignementDaoImp implements EnseignementDao {
     private static final String INSERT_ENSEIGNEMENT = "INSERT INTO enseignement (enseignant_id, matiere_id) VALUES (?, ?)";
     private static final String SELECT_ENSEIGNEMENTS_BY_ENSEIGNANT_ID = "SELECT * FROM enseignement WHERE enseignant_id=?";
-
+    private static final String INSERT_USER_SUBJECT = "INSERT INTO enseignementMatieres (user_id, matiere_id) VALUES (?, ?)";
     @Override
     public void addEnseignement(Enseignement enseignement) {
         try (Connection connection = JDBCUtils.getConnection();
@@ -44,6 +44,20 @@ public class EnseignementDaoImp implements EnseignementDao {
         }
         return enseignements;
     }
-
-    // Implémentez d'autres méthodes CRUD si nécessaire
+    
+    @Override
+    public void saveEnsMatieres(int user_id, String[] selectedSubjects) {
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(INSERT_USER_SUBJECT)) {
+            for (String matiere_id : selectedSubjects) {
+                stmt.setInt(1, user_id);
+                stmt.setInt(2, Integer.parseInt(matiere_id));
+                stmt.addBatch(); 
+            }
+            stmt.executeBatch(); 
+        } catch (SQLException e) {
+            e.printStackTrace();
+          
+        }
+    }
 }

@@ -9,7 +9,7 @@
    <%@ include file="front-header.jsp" %>
   <%@ include file="cssfiles.jsp" %>
     <h2>Select matiere</h2>
-    <form action="UserMatieresServlet" method="post">
+    <form action=usermatiere method="post">
           <c:forEach var="matiere" items="${matieres}">
             <input type="checkbox" name="subject" value="${matiere.id}"> ${matiere.nom}<br>
         </c:forEach>

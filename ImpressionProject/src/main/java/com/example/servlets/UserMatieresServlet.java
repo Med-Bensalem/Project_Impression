@@ -39,10 +39,7 @@ public class UserMatieresServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserMatieresServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,7 +63,7 @@ public class UserMatieresServlet extends HttpServlet {
 		    User user = (User) session.getAttribute("user");
 		    
 		    if (user != null) {
-		      
+		    	 System.out.println("gg" );
 		        int user_id = user.getUserId();
 		        
 		       

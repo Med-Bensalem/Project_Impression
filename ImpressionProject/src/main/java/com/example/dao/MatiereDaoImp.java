@@ -92,4 +92,28 @@ public class MatiereDaoImp implements MatiereDao {
         matiere.setDescription(resultSet.getString("description"));
         return matiere;
     }
+    
+    @Override
+    public List<Matiere> getMatieresByEnseignantId(int enseignantId) {
+        List<Matiere> matieres = new ArrayList<>();
+        String query = "SELECT m.id, m.nom, m.description " +
+                "FROM matieres m " +
+                "INNER JOIN enseignementmatieres em ON m.id = em.matiere_id " +
+                "WHERE em.user_id = ?";
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, enseignantId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nom = resultSet.getString("nom");
+                String description = resultSet.getString("description");
+                Matiere matiere = new Matiere(id, nom, description);
+                matieres.add(matiere);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return matieres;
+    }
 }

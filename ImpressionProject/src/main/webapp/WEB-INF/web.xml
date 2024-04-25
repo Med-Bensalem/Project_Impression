@@ -79,4 +79,24 @@
     <servlet-name>GroupServlet</servlet-name>
     <url-pattern>/GroupServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ImpressionServlet</display-name>
+    <servlet-name>ImpressionServlet</servlet-name>
+    <servlet-class>com.example.models.ImpressionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImpressionServlet</servlet-name>
+    <url-pattern>/ImpressionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ImpressionListServlet</display-name>
+    <servlet-name>ImpressionListServlet</servlet-name>
+    <servlet-class>com.example.servlets.ImpressionListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImpressionListServlet</servlet-name>
+    <url-pattern>/ImpressionListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

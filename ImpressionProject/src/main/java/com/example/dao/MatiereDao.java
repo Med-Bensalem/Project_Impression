@@ -9,4 +9,5 @@ public interface MatiereDao {
     void addMatiere(Matiere matiere);
     void updateMatiere(Matiere matiere);
     void deleteMatiere(int id);
+    List<Matiere> getMatieresByEnseignantId(int enseignantId);
 }

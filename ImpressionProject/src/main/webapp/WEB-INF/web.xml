@@ -99,4 +99,14 @@
     <servlet-name>ImpressionListServlet</servlet-name>
     <url-pattern>/ImpressionListServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AgentImpression</display-name>
+    <servlet-name>AgentImpression</servlet-name>
+    <servlet-class>com.example.servlets.AgentImpression</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgentImpression</servlet-name>
+    <url-pattern>/AgentImpression</url-pattern>
+  </servlet-mapping>
 </web-app>

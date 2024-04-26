@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.example.utilis.JDBCUtils;
+import com.example.models.Group;
 import com.example.models.Impression;
 
 
 public class ImpressionDaoImp implements ImpressionDao {
-    private static final String SELECT_ALL_IMPRESSIONS = "SELECT * FROM impressions";
+    
     private static final String SELECT_IMPRESSION_BY_ID = "SELECT * FROM impressions WHERE id=?";
     private static final String INSERT_IMPRESSION = "INSERT INTO impressions (id_enseignant, id_groupe, id_matiere, date_impression, document, etat, nombreDePages) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_IMPRESSION = "UPDATE impressions SET id_enseignant=?, id_groupe=?, id_matiere=?, date_impression=?, document=?, etat=?, nombre_de_pages=? WHERE id=?";
@@ -25,23 +26,21 @@ public class ImpressionDaoImp implements ImpressionDao {
     		        "JOIN matieres mat ON imp.id_matiere = mat.id " +
     		        "WHERE id_enseignant = ?";
 
-
+    private static final String SELECT_ALL_IMPRESSIONS = "SELECT imp.*, users.username AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
+	        "FROM impressions imp " +
+	        "JOIN users ON imp.id_enseignant = users.user_id " +
+	        "JOIN groups group_table ON imp.id_groupe = group_table.id " +
+	        "JOIN matieres mat ON imp.id_matiere = mat.id ";
             
-    @Override
-    public List<Impression> getAllImpressions() {
-        List<Impression> impressionList = new ArrayList<>();
-        try (Connection connection = JDBCUtils.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_IMPRESSIONS);
-             ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                Impression impression = extractImpressionFromResultSet(resultSet);
-                impressionList.add(impression);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return impressionList;
-    }
+	/*
+	 * @Override public List<Impression> getAllImpressions() { List<Impression>
+	 * impressionList = new ArrayList<>(); try (Connection connection =
+	 * JDBCUtils.getConnection(); PreparedStatement statement =
+	 * connection.prepareStatement(SELECT_ALL_IMPRESSIONS); ResultSet resultSet =
+	 * statement.executeQuery()) { while (resultSet.next()) { Impression impression
+	 * = extractImpressionFromResultSet(resultSet); impressionList.add(impression);
+	 * } } catch (SQLException e) { e.printStackTrace(); } return impressionList; }
+	 */
 
     @Override
     public Impression getImpressionById(int id) {
@@ -147,6 +146,22 @@ public class ImpressionDaoImp implements ImpressionDao {
         impression.setMatiereNom(matiereNom);
 
         return impression;
+    }
+    
+    @Override
+    public List<Impression> getAllImpressions() {
+        List<Impression> impressions = new ArrayList<>();
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_IMPRESSIONS);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+            	Impression impression = extractImpressionFromResultSet(resultSet);
+            	impressions.add(impression);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return impressions;
     }
 
 }

@@ -34,7 +34,10 @@
 		            <td>${impression.etat}</td>
 		            <td>${impression.nombreDePages}</td>
 		            <td>
-		            
+		             <form action="printimpression" method="post">
+	                    <input type="hidden" name="impressionId" value="${impression.id}">
+	                    <input type="submit" value="Imprimer">
+	                </form>
 		                <form action="deleteimpression" method="post">
 		                    <input type="hidden" name="impressionId" value="${impression.id}">
 		                    <input type="submit" value="Supprimer">

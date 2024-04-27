@@ -6,7 +6,8 @@
 
    <div id="db-wrapper">
         <!-- navbar vertical -->
-
+	ggff <p>${pageContext.request.contextPath}</p>
+	
         <!-- navbar vertical -->
         <!-- Sidebar -->
         <%@ include file="admin-sidebar.jsp" %>

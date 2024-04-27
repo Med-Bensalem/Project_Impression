@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2>Ajouter une impression</h2>
-    <form action="Impression" method="post">
+    <form action="Impression" method="post" enctype="multipart/form-data">>
         <label for="groupe">Groupe:</label>
         <select name="groupe" id="groupe">
             <c:forEach items="${groups}" var="group">
@@ -25,9 +25,9 @@
         <br><br>
         <label for="dateImpression">Date d'impression:</label>
         <input type="date" name="dateImpression" id="dateImpression">
-        <br><br>
+       <br><br>
         <label for="document">Document:</label>
-        <input type="text" name="document" id="document">
+        <input type="file" name="document" id="document">
         <br><br>
         <input type="submit" value="Ajouter">
     </form>

@@ -4,8 +4,13 @@
  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-0">
         <div class="d-flex">
-            <a class="navbar-brand" href="/home"><img src="${pageContext.request.contextPath}/assets/images/brand/logo/logo.svg" alt="Geeks" /></a>
-            <div class="dropdown d-none d-md-block">
+              <a class="navbar-brand" href="/home"><img src="${pageContext.request.contextPath}/assets/logoISB2.png" class="logo-img" alt="Geeks" /></a>
+              <style>
+              .logo-img {
+				    height: 3rem; 
+				}
+              
+              </style>	            <div class="dropdown d-none d-md-block">
                 <button class="btn btn-light-primary text-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fe fe-list me-2 align-middle"></i>
                     Category

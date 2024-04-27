@@ -34,10 +34,15 @@
                         <div class="card shadow">
                             <!-- Card body -->
                             <div class="card-body p-6">
-                                <div class="mb-4">
-                                    <a href="../index.html"><img src="${pageContext.request.contextPath}/assets/images/brand/logo/logo-icon.svg" class="mb-4" alt="logo-icon"></a>
+                                <div class="mb-4 text-center">
+                                    <a href="../index.html"><img src="${pageContext.request.contextPath}/assets/logoISB2.png" class="mb-4 logo-img" alt="logo-icon"></a>
                                     <h1 class="mb-1 fw-bold">Sign in</h1>
-                                    
+                                    	 <style>
+								              .logo-img {
+												    height: 15rem; 
+												}
+								              
+								              </style>	
                                 </div>
                                 <!-- Form -->
                                 <form action="Login" method="post" class="needs-validation" novalidate>
@@ -53,18 +58,11 @@
                                         <input type="password" id="password" name="password" class="form-control" name="password" placeholder="**************" required>
                                         <div class="invalid-feedback">Please enter valid password.</div>
                                     </div>
-                                    <!-- Checkbox -->
-                                    <div class="d-lg-flex justify-content-between align-items-center mb-4">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="rememberme" required>
-                                            <label class="form-check-label" for="rememberme">Remember me</label>
-                                            <div class="invalid-feedback">You must agree before submitting.</div>
-                                        </div>
-                                       
-                                    </div>
+                                  
+                                    
                                     <div>
                                         <!-- Button -->
-                                        <div class="d-grid">
+                                        <div class="d-grid mt-2">
                                             <button type="submit" value="login" class="btn btn-primary">Sign in</button>
                                         </div>
                                     </div>

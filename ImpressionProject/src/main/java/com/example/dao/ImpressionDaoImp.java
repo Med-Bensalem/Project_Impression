@@ -30,7 +30,7 @@ public class ImpressionDaoImp implements ImpressionDao {
 	        "FROM impressions imp " +
 	        "JOIN users ON imp.id_enseignant = users.user_id " +
 	        "JOIN groups group_table ON imp.id_groupe = group_table.id " +
-	        "JOIN matieres mat ON imp.id_matiere = mat.id ";
+	        "JOIN matieres mat ON imp.id_matiere = mat.id " + "WHERE imp.etat = 'En attente'";
             
 	/*
 	 * @Override public List<Impression> getAllImpressions() { List<Impression>

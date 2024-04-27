@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             // User found, set session attribute and redirect to home page
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            response.sendRedirect("main.jsp");
+            response.sendRedirect("home.jsp");
         } else {
             // User not found, redirect to login page with error message
             response.sendRedirect("login.jsp?error=Invalid credentials");

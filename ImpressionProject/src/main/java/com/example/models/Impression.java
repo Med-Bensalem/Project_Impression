@@ -8,7 +8,7 @@ public class Impression {
 	    private int idGroupe;
 	    private int idMatiere;
 	    private Date dateImpression;
-	    private String document;
+	    public String document;
 	    private String etat;
 	    private int nombreDePages;
 	    private Group group;

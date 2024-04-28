@@ -38,12 +38,8 @@
                                     </ol>
                                 </nav>
                             </div>
-                            
-                             <div>
-                                
-                            </div>
                             <div class="text-end">
-                            	<a href="agentimpressionslog" class="btn btn-primary">Historique</a>
+                            	<a href="agentimpressions" class="btn btn-primary">En attente</a>
                                 <a href="AgentCalendarServlet" class="btn btn-primary">View Calendrier</a>
                             </div>
                         </div>
@@ -76,7 +72,6 @@
                                                <c:forEach items="${impressions}" var="impression">
                                                 <tr>
                                                      <td>
-                                                    
 																<a href="#" class="text-inherit">
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
@@ -116,15 +111,17 @@
 												                <span class="badge bg-danger">${impression.etat}</span>
 												            </c:if>
 
-											           
+											          
+                                                    
                                                     <td>
                                                     		<div class="d-block">
-                                                    				 <a class="btn btn-outline-secondary btn-sm mx-2" href="agentimpressions?action=imprime&id=${impression.id}">
+                                                    				 <a class="btn btn-outline-secondary btn-sm mx-2" download="C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/${impression.document}"
+                                                    				 href="C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/${impression.document}">
                                                                         <i class="fe fe-download dropdown-item-icon"></i>
                                                                        Imprimer
                                                                     </a>
                                                                    
-                                                                    <a class="btn btn-danger-light btn-sm" href="agentimpressions?action=delete&id=${impression.id}">
+                                                                    <a class="btn btn-danger-light btn-sm" href="agentimpressionslog?action=delete&id=${impression.id}">
                                                                         <i class="fe fe-trash dropdown-item-icon"></i>
                                                                         Supprimer
                                                                     </a>

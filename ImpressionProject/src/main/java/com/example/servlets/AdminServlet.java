@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
@@ -27,29 +28,39 @@ public class AdminServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        
-        if (action == null || action.isEmpty()) {
-            action = "list"; // Default: list users
-        }
+    	 HttpSession session = request.getSession(false);
+		 if (session != null) {
+		        User user = (User) session.getAttribute("user");
 
-        switch (action) {
-            case "list":
-                listUsers(request, response);
-                break;
-            case "add":
-                showAddForm(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            case "delete":
-                deleteUser(request, response);
-                break;
-            default:
-                listUsers(request, response);
-        }
-        
+		        if (user != null) {
+				    	String action = request.getParameter("action");
+				        
+				        if (action == null || action.isEmpty()) {
+				            action = "list"; // Default: list users
+				        }
+				
+				        switch (action) {
+				            case "list":
+				                listUsers(request, response);
+				                break;
+				            case "add":
+				                showAddForm(request, response);
+				                break;
+				            case "edit":
+				                showEditForm(request, response);
+				                break;
+				            case "delete":
+				                deleteUser(request, response);
+				                break;
+				            default:
+				                listUsers(request, response);
+				        }
+		        } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
         
        
         
@@ -178,7 +189,7 @@ public class AdminServlet extends HttpServlet {
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve form parameters
-        int userId = Integer.parseInt(request.getParameter("userId"));
+    	int userId = Integer.parseInt(request.getParameter("userId"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
@@ -193,6 +204,7 @@ public class AdminServlet extends HttpServlet {
         user.setEmail(email);
         user.setRole(role);
         user.setActive(active);
+        user.setUserId(userId);
 
         // Update the user in the database
         userDao.updateUser(user);

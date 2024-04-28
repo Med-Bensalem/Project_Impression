@@ -16,7 +16,7 @@ public class UserDaoImp implements UserDao {
     private static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE user_id=?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
     private static final String INSERT_USER = "INSERT INTO users (username, password, email, role, active) VALUES (?, ?, ?, ?, ?)";
-    private static final String UPDATE_USER = "UPDATE users SET username=?, password=?, email=?, role=?, active=? WHERE userId=?";
+    private static final String UPDATE_USER = "UPDATE users SET username=?, password=?, email=?, role=?, active=? WHERE user_id=?";
     private static final String DELETE_USER = "DELETE FROM users WHERE user_id=?";
     private static final String SELECT_USER_BY_USERNAME_PASSWORD = "SELECT * FROM users WHERE username=? AND password=?";
     private static final String SELECT_USER_BY_USERNAME = "SELECT * FROM users WHERE username = ?";

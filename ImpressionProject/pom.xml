@@ -23,8 +23,13 @@
 		    <version>7.0</version>
 		    <scope>provided</scope>
 		</dependency>
-		
-	</dependencies>
+
+		<dependency>
+			<groupId>Authentification</groupId>
+			<artifactId>Authentification</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+    </dependencies>
 
 
     <build>

@@ -31,7 +31,13 @@ public class ImpressionDaoImp implements ImpressionDao {
 	        "JOIN users ON imp.id_enseignant = users.user_id " +
 	        "JOIN groups group_table ON imp.id_groupe = group_table.id " +
 	        "JOIN matieres mat ON imp.id_matiere = mat.id " + "WHERE imp.etat = 'En attente'";
-            
+    private static final String SELECT_ALL_IMPRESSIONS_LOG = "SELECT imp.*, users.username AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
+	        "FROM impressions imp " +
+	        "JOIN users ON imp.id_enseignant = users.user_id " +
+	        "JOIN groups group_table ON imp.id_groupe = group_table.id " +
+	        "JOIN matieres mat ON imp.id_matiere = mat.id " + "WHERE imp.etat = 'Complete'";
+    private static final String UPDATE_IMPRESSION_STATE = "UPDATE impressions SET etat=? WHERE id=?";
+        
 	/*
 	 * @Override public List<Impression> getAllImpressions() { List<Impression>
 	 * impressionList = new ArrayList<>(); try (Connection connection =
@@ -162,6 +168,34 @@ public class ImpressionDaoImp implements ImpressionDao {
             e.printStackTrace();
         }
         return impressions;
+    }
+    
+    @Override
+    public List<Impression> getAllImpressionslog() {
+        List<Impression> impressions = new ArrayList<>();
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_IMPRESSIONS_LOG);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+            	Impression impression = extractImpressionFromResultSet(resultSet);
+            	impressions.add(impression);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return impressions;
+    }
+    
+    @Override
+    public void updateImpressionState(int id, String state) {
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_IMPRESSION_STATE)) {
+            statement.setString(1, state);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

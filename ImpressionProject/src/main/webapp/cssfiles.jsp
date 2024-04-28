@@ -1,5 +1,7 @@
 
 <!-- CSS stylesheets -->
+   <link href="${pageContext.request.contextPath}/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+   <link href="${pageContext.request.contextPath}/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/libs/glightbox/dist/css/glightbox.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fonts/feather/feather.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/libs/bootstrap-icons/font/bootstrap-icons.min.css">

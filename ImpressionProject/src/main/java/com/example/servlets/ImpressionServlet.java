@@ -114,9 +114,9 @@ public class ImpressionServlet extends HttpServlet {
 	            
 	            Part filePart = request.getPart("document");
 	            String fileName = UUID.randomUUID().toString() + getFileExtension(filePart); // Generate a unique file name
-	            String uploadPath = getServletContext().getRealPath("/") + "uploads";
+	            String uploadPath = getServletContext().getRealPath("/uploads");
 	            File uploadDir = new File(uploadPath);
-
+	            System.out.println("uploadPath: " + uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdirs(); // Create the directory if it doesn't exist
 	            }

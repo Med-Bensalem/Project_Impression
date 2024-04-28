@@ -44,73 +44,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <!-- Card -->
-                        <div class="card rounded-3">
-                            <!-- Card Header -->
-                           
-                            <div class="p-4 row">
-                                <!-- Form -->
-                                <form class="d-flex align-items-center col-12 col-md-8 col-lg-3">
-                                    <span class="position-absolute ps-3 search-icon">
-                                        <i class="fe fe-search"></i>
-                                    </span>
-                                    <input type="search" class="form-control ps-6" placeholder="recherce matiere">
-                                </form>
-                            </div>
-                            <div>
-                                <div class="tab-content" id="tabContent">
-                                    <!-- Tab -->
-                                    <div class="tab-pane fade show active" id="all-post" role="tabpanel"
-                                        aria-labelledby="all-post-tab">
-                                        <div class="table-responsive">
-                                            <!-- Table -->
-                                            <table
-                                                class="table mb-0 text-nowrap table-centered table-hover table-with-checkbox table-centered table-hover">
-                                                <!-- Table Head -->
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input"
-                                                                    id="checkAll">
-                                                                <label class="form-check-label" for="checkAll"></label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Matiere</th>
-                                                      
-                                                        <th>Description</th>
-                                                        
-                                                        <th>Action</th>
-                                                      
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Table body -->
-                                                     <c:forEach var="matiere" items="${matieres}">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input"
-                                                                    id="postOne">
-                                                                <label class="form-check-label" for="postOne"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <h5 class="mb-0">
-                                                                <a href="#" class="text-inherit">${matiere.nom}</a>
-                                                            </h5>
-                                                        </td>
-                                                       
-                                                        <td>
-                                                            <a href="#" class="text-inherit">${matiere.description}</a>
-                                                        </td>
-                                                       
-                                                       
-                                                       
-                                                        <td>
-                                                            <span class="dropdown dropstart">
+                    <div class="row">
+                        <!-- basic table -->
+                        <div class="col-md-12 col-12 mb-5">
+                            <div class="card">
+                              
+                                <div class="card-body">
+                                    <div class="table-card">
+                                        <table id="dataTableBasic" class="table table-hover" style="width: 100%">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Matiere</th>
+                                                    <th>Description</th>
+                                                    <th>Action</th>
+                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                             <c:forEach var="matiere" items="${matieres}">
+                                                <tr>
+                                                    <td>${matiere.nom}</td>
+                                                    <td>${matiere.description}</td>
+                                                    <td>
+                                                    		<span class="dropdown dropstart">
                                                                 <a class="btn-icon btn btn-ghost btn-sm rounded-circle"
                                                                     href="#" role="button" id="courseDropdown1"
                                                                     data-bs-toggle="dropdown" data-bs-offset="-20,20"
@@ -131,23 +87,21 @@
                                                                     </a>
                                                                 </span>
                                                             </span>
-                                                        </td>
-                                                    </tr>
-                                                       </c:forEach>
-                                                   </tbody>
-                                            </table>
-                                        </div>
+													</td>
+                                                 
+                                                  
+                                                </tr>
+                                                 </c:forEach>
+                                               
+                                            </tbody>
+                                        </table>
                                     </div>
-                                   
-                                        
                                 </div>
                             </div>
-                            <!-- Card Footer -->
-                          
                         </div>
                     </div>
-                </div>
-            </section>
+              
+               </section>
         </main>
     </div>
          

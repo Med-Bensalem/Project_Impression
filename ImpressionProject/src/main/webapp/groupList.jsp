@@ -104,7 +104,7 @@
                                                         </td>
                                                        
                                                         <td>
-                                                            <a href="#" class="text-inherit">${group.nbetudiants}</a>
+                                                            <a href="#" class="text-inherit">${group.nbetudiants} Etudiants</a>
                                                         </td>
                                                        
                                                        

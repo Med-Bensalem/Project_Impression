@@ -1,77 +1,124 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.example.models.Matiere" %>
 <%@ page import="com.example.models.Role" %>
 <%@ page import="java.util.List" %>
+  <%@ include file="cssfiles.jsp" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Ajouter un utilisateur</title>
-</head>
-<body>
-    <h1>Ajouter un utilisateur</h1>
-    <form action="AdminServlet?action=add" method="post">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-        Email: <input type="email" name="email"><br>
-        <!-- Dropdown select for role -->
-        Role:
-        <select name="role" id="roleSelect" multiple>
-            <%-- Utiliser une boucle pour afficher les options des matières --%>
-           <% List<Role> roles = (List<Role>) request.getAttribute("roles");
-               if (roles != null) {
-                   for (Role role : roles) { %>
-                       <option value="<%= role.getName() %>"><%= role.getName() %></option>
-            <%     }
-               } %>
-        </select><br>
-        
-        Matières enseignées:
-        <select name="matieres" id="matieresSelect" multiple style="display: none;">
-            <%-- Utiliser une boucle pour afficher les options des matières --%>
-           <% List<Matiere> matieres = (List<Matiere>) request.getAttribute("matieres");
-               if (matieres != null) {
-                   for (Matiere matiere : matieres) { %>
-                       <option value="<%= matiere.getId() %>"><%= matiere.getNom() %></option>
-            <%     }
-               } %>
-        </select><br>
-        Activer le compte :
-        <input type="checkbox" name="activeCheckbox" id="activeCheckbox" checked><br>
-        <input type="hidden" name="active" id="activeHiddenInput" value="true">
-        
-       
-        <input type="submit" value="Ajouter">
-    </form>
+   <div id="db-wrapper">
+        <!-- navbar vertical -->
 
-    <script>
-    // Get the role select element
-    var roleSelect = document.getElementById('roleSelect');
-    var activeCheckbox = document.getElementById('activeCheckbox');
-    var activeHiddenInput = document.getElementById('activeHiddenInput');
-    
-    // Add event listener to role select
-    roleSelect.addEventListener('change', function() {
-        var selectedRole = roleSelect.value;
-        var matieresSelect = document.getElementById('matieresSelect');
-        
-        // If selected role is 'enseignant', show matieres select
-        if (selectedRole === 'enseignant' || selectedRole === 'Enseignant') {
-            // Show matieres select
-            matieresSelect.style.display = 'block';
-        } else {
-            // Hide matieres select if selected role is not 'enseignant'
-            matieresSelect.style.display = 'none';
-        }
-    });
-    
-    // Add event listener to active checkbox
-    activeCheckbox.addEventListener('change', function() {
-        // Set the value of the hidden input to the opposite of the checkbox value
-        activeHiddenInput.value = activeCheckbox.checked ? "true" : "false";
-    });
-</script>
+	
+        <!-- navbar vertical -->
+        <!-- Sidebar -->
+        <%@ include file="admin-sidebar.jsp" %>
 
-</body>
-</html>
+
+        <!-- Page Content -->
+        <main id="page-content">
+            <div class="header">
+                <!-- navbar -->
+                
+                 <%@ include file="admin-header.jsp" %>
+              </div>
+
+            <!-- Container fluid -->
+             <section class="container-fluid p-4">
+                    <div class="row">
+                        <!-- Page header -->
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
+                                <div class="mb-3 mb-md-0">
+                                    <h1 class="mb-1 h2 fw-bold">Ajouter un utilisateur</h1>
+                                    <!-- Breadcrumb -->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                          
+                                         
+                                            <li class="breadcrumb-item active" aria-current="page">Ajouter un utilisateur</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                            <!-- Card -->
+                            <div class="card border-0 mb-4">
+                                <!-- Card header -->
+                                <div class="card-header">
+                                    <h4 class="mb-0">Ajouter un utilisateur</h4>
+                                </div>
+                                <form  class="needs-validation" novalidate action="AdminServlet?action=add" method="post" enctype="multipart/form-data">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+
+                                        <!-- Add the "Upload" button -->
+                                        <div class="mt-4">
+                                            <!-- Form -->
+                                            <div class="row">
+                                                <!-- Date -->
+                                            
+                                                
+                                                 <div class=" col-md-6">
+                                                    <!-- Title -->
+                                                    <label for="dateImpression"  class="form-label">username:</label>
+       												<input type="text" name="username" id="username" class="form-control">
+                                                </div>
+                                                 <div class=" col-md-6">
+                                                    <!-- Title -->
+                                                    <label for="dateImpression"  class="form-label">password:</label>
+       												<input type="text" name="password" id="password" class="form-control">
+                                                </div>
+                                                 <div class=" col-md-6">
+                                                    <!-- Title -->
+                                                    <label for="dateImpression"  class="form-label">Email:</label>
+       												<input type="email" name="email" id="email" class="form-control">
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <!-- Title -->
+                                                    <label for="postTitle" class="form-label">Role</label>
+                                                   <select name="role" id="roleSelect"  class="form-select">
+											             <%-- Utiliser une boucle pour afficher les options des matières --%>
+												           <% List<Role> roles = (List<Role>) request.getAttribute("roles");
+												               if (roles != null) {
+												                   for (Role role : roles) { %>
+												                       <option value="<%= role.getName() %>"><%= role.getName() %></option>
+												            <%     }
+												               } %>
+											        </select>
+                                                </div>
+                                                
+                                                <div class=" col-md-12 mt-3">
+                                                    <!-- Title -->
+                                                    <label for="dateImpression mt-2"  class="form-label">Activer le compte :</label>
+       												<input type="checkbox" class="form-check-input " name="activeCheckbox" id="activeCheckbox" >
+       												   <input type="hidden" name="active" id="activeHiddenInput" value="true">
+                                                </div>
+                                                
+                                           
+                                              
+
+                                            </div>
+                                        </div>
+                                        <!-- Editor -->
+                                       <div class="text-end">
+                                       <button type="submit" class="btn btn-primary" value="Ajouter">Enregister</button>
+                                       </div>
+                                        <!-- button -->
+                                        
+                                       
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                       </div>
+                </section>
+            </main>
+    </div>
+         
+  <%@ include file="jsfiles.jsp" %>
+

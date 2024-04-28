@@ -11,4 +11,6 @@ public interface ImpressionDao {
 	    void updateImpression(Impression impression);
 	    void deleteImpression(int id);
 	    List<Impression> getImpressionsByEnseignantId(int enseignantId);
+		void updateImpressionState(int id, String state);
+		List<Impression> getAllImpressionslog();
 }

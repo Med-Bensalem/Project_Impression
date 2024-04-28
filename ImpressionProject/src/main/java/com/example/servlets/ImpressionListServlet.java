@@ -38,15 +38,25 @@ public class ImpressionListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session = request.getSession();
-	        User user = (User) session.getAttribute("user");
+		 HttpSession session = request.getSession(false);
+		 if (session != null) {
+		        User user = (User) session.getAttribute("user");
 
-	        int idEnseignant = user.getUserId();
+		        if (user != null) {
+	   
 
-	        List<Impression> impressions = impressionDao.getImpressionsByEnseignantId(idEnseignant);
-
-	        request.setAttribute("impressions", impressions);
-	        request.getRequestDispatcher("impressionlist.jsp").forward(request, response);
+			        int idEnseignant = user.getUserId();
+		
+			        List<Impression> impressions = impressionDao.getImpressionsByEnseignantId(idEnseignant);
+		
+			        request.setAttribute("impressions", impressions);
+			        request.getRequestDispatcher("impressionlist.jsp").forward(request, response);
+		        } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
 	}
 
 	/**

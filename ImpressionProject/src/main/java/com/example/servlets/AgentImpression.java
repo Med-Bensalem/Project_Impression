@@ -38,15 +38,22 @@ public class AgentImpression extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session = request.getSession();
+		 HttpSession session = request.getSession(false);
+		 if (session != null) {
 	        User user = (User) session.getAttribute("user");
-
+	        if (user != null) {
 	        int idEnseignant = user.getUserId();
 
 	        List<Impression> impressions = impressionDao.getAllImpressions();
 
 	        request.setAttribute("impressions", impressions);
 	        request.getRequestDispatcher("agentimpressionlist.jsp").forward(request, response);
+	   	 } else {
+	            response.sendRedirect("login.jsp"); 
+	        }
+	    } else {
+	        response.sendRedirect("login.jsp"); 
+	    }
 	}
 
 	/**

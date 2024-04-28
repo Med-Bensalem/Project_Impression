@@ -57,24 +57,31 @@ public class ImpressionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	HttpSession session = request.getSession();
-	    User user = (User) session.getAttribute("user");
+    	HttpSession session = request.getSession(false);
+    	 if (session != null) {
+		        User user = (User) session.getAttribute("user");
 
-
+		        if (user != null) {
 	        
-	    int idEnseignant  = user.getUserId();
-        
-        List<Group> groups = groupDao.getAllGroups();
-        
-      
-       // List<Matiere> matieres = matiereDao.getAllMatieres();
-        List<Matiere> matieres = matiereDao.getMatieresByEnseignantId(idEnseignant);
-        request.setAttribute("groups", groups);
-        request.setAttribute("matieres", matieres);
-        System.out.println("Enseignant ID: " + idEnseignant);
-        System.out.println("Total groups: " + groups.size()); 
-        System.out.println("Total matieres for enseignant " + idEnseignant + ": " + matieres.size()); // Debug
-        request.getRequestDispatcher("addimpression.jsp").forward(request, response);
+				    int idEnseignant  = user.getUserId();
+			        
+			        List<Group> groups = groupDao.getAllGroups();
+			        
+			      
+			       // List<Matiere> matieres = matiereDao.getAllMatieres();
+			        List<Matiere> matieres = matiereDao.getMatieresByEnseignantId(idEnseignant);
+			        request.setAttribute("groups", groups);
+			        request.setAttribute("matieres", matieres);
+			        System.out.println("Enseignant ID: " + idEnseignant);
+			        System.out.println("Total groups: " + groups.size()); 
+			        System.out.println("Total matieres for enseignant " + idEnseignant + ": " + matieres.size()); // Debug
+			        request.getRequestDispatcher("addimpression.jsp").forward(request, response);
+		   	 } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
     }
 
 	/**

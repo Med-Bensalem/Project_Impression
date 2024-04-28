@@ -5,12 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
 import com.example.dao.GroupDao;
 import com.example.dao.GroupDaoImp;
 import com.example.models.Group;
+import com.example.models.User;
 
 /**
  * Servlet implementation class GroupServlet
@@ -32,25 +35,36 @@ public class GroupServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+		 HttpSession session = request.getSession(false);
+		 if (session != null) {
+		        User user = (User) session.getAttribute("user");
 
-        if (action == null) {
-            action = "list"; 
-        }
-
-        switch (action) {
-            case "list":
-                listGroups(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            case "delete":
-                deleteGroup(request, response);
-                break;
-            default:
-                response.sendRedirect("Group?action=list");
-        }
+		        if (user != null) {
+						String action = request.getParameter("action");
+				
+				        if (action == null) {
+				            action = "list"; 
+				        }
+				
+				        switch (action) {
+				            case "list":
+				                listGroups(request, response);
+				                break;
+				            case "edit":
+				                showEditForm(request, response);
+				                break;
+				            case "delete":
+				                deleteGroup(request, response);
+				                break;
+				            default:
+				                response.sendRedirect("Group?action=list");
+				        }
+		        } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
 	}
 
 	/**

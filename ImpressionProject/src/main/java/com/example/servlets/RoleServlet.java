@@ -3,6 +3,7 @@ package com.example.servlets;
 import com.example.dao.RoleDao;
 import com.example.dao.RoleDaoImp;
 import com.example.models.Role;
+import com.example.models.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/Role")
 public class RoleServlet extends HttpServlet {
@@ -24,17 +26,28 @@ public class RoleServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+    	 HttpSession session = request.getSession(false);
+		 if (session != null) {
+		        User user = (User) session.getAttribute("user");
 
-        if (action == null) {
-            listRoles(request, response);
-        } else if (action.equals("edit")) {
-            showEditForm(request, response);
-        } else if (action.equals("delete")) {
-            deleteRole(request, response);
-        } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action non valide");
-        }
+		        if (user != null) {
+			    	String action = request.getParameter("action");
+			
+			        if (action == null) {
+			            listRoles(request, response);
+			        } else if (action.equals("edit")) {
+			            showEditForm(request, response);
+			        } else if (action.equals("delete")) {
+			            deleteRole(request, response);
+			        } else {
+			            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Action non valide");
+			        }
+		        } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

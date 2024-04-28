@@ -6,12 +6,14 @@ import java.util.List;
 import com.example.dao.MatiereDao;
 import com.example.dao.MatiereDaoImp;
 import com.example.models.Matiere;
+import com.example.models.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/Matiere")
 public class MatiereServlet extends HttpServlet {
@@ -25,24 +27,35 @@ public class MatiereServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        HttpSession session = request.getSession(false);
+		 if (session != null) {
+		        User user = (User) session.getAttribute("user");
 
-        if (action == null) {
-            action = "list"; // Par défaut, afficher la liste des matières
-        }
+		        if (user != null) {
 
-        switch (action) {
-            case "list":
-                listMatieres(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            case "delete":
-                deleteMatiere(request, response);
-                break;
-            default:
-                response.sendRedirect("Matiere?action=list");
-        }
+			        if (action == null) {
+			            action = "list"; 
+			        }
+			
+			        switch (action) {
+			            case "list":
+			                listMatieres(request, response);
+			                break;
+			            case "edit":
+			                showEditForm(request, response);
+			                break;
+			            case "delete":
+			                deleteMatiere(request, response);
+			                break;
+			            default:
+			                response.sendRedirect("Matiere?action=list");
+			        }
+		        } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

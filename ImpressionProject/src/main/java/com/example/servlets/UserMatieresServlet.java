@@ -46,12 +46,22 @@ public class UserMatieresServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	     
+		 HttpSession session = request.getSession(false);
+		 if (session != null) {
+		        User user = (User) session.getAttribute("user");
+
+		        if (user != null) {
 	 
-	        
-	        List<Matiere> matieres = matiereDao.getAllMatieres();
-	        request.setAttribute("matieres", matieres);
-	        request.getRequestDispatcher("usermatiere.jsp").forward(request, response);
+			        
+			        List<Matiere> matieres = matiereDao.getAllMatieres();
+			        request.setAttribute("matieres", matieres);
+			        request.getRequestDispatcher("usermatiere.jsp").forward(request, response);
+		        } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
 	        
 	}
 

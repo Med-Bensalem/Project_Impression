@@ -48,6 +48,8 @@
 					  
 								    User user = (User) session.getAttribute("user");
 								%>
+								
+							
                             <!-- List -->
                              <li class="dropdown ms-2 d-inline-block position-static">
 					        <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">

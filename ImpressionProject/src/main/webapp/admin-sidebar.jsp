@@ -1,4 +1,12 @@
+ 
+<%@ page import="com.example.models.User" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <nav class="navbar-vertical navbar">
+ <%					  
+User userr = (User) session.getAttribute("user");
+%>
+
             <div class="vh-100" data-simplebar>
                 <!-- Brand logo -->
                 <a class="navbar-brand" href="../../index.html">
@@ -11,26 +19,19 @@
               
               </style>	
                 <!-- Navbar nav -->
+              	<% var userRole = userr.getRole(); %>
                 <ul class="navbar-nav flex-column" id="sideNavbar">
+                   <% if (userr.getRole().equals("admin")) { %>
+             
                     <li class="nav-item">
-                        <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse"
-                            data-bs-target="#navDashboard" aria-expanded="false" aria-controls="navDashboard">
+                        <a class="nav-link   " href="#" >
                             <i class="nav-icon fe fe-home me-2"></i>
                             Dashboard
                         </a>
-                        <div id="navDashboard" class="collapse " data-bs-parent="#sideNavbar">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="admin-dashboard.html">Overview</a>
-                                </li>
-                                <!-- Nav item -->
-                                <li class="nav-item">
-                                    <a class="nav-link " href="dashboard-analytics.html">Analytics</a>
-                                </li>
-                            </ul>
-                        </div>
+                       
                     </li>
                    
+                 
                     <!-- Nav item -->
                     <li class="nav-item">
                         <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navProfile"
@@ -65,6 +66,10 @@
                             <span class="ms-2">Gestion Groups</span>
                         </a>
                     </li>
+                      <% } %>
+                      
+                      
+                    <% if (userr.getRole().equals("admin") || userr.getRole().equals("enseignant")) { %>
                     
                      <li class="nav-item">
                         <a class="nav-link " href="usermatiere">
@@ -92,17 +97,17 @@
                             <span class="ms-2">Mes Demande</span>
                         </a>
                     </li>
-                    
+                      <% } %>
                    
                    
-                   
+                    <% if (userr.getRole().equals("admin") || userr.getRole().equals("agent")) { %>
                     <!-- Nav item -->
                     <li class="nav-item">
                         <a class="nav-link " href="AgentImpression">
                             <span>
                              <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-printer"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" /><path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" /><path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" /></svg>
                             </span>
-                            <span class="ms-2">Request impression</span>
+                            <span class="ms-2">Requested impressions</span>
                         </a>
                     </li>
                     <!-- Nav item -->
@@ -117,6 +122,7 @@
                     <li class="nav-item">
                         <div class="nav-divider"></div>
                     </li>
+                       <% } %>
                     <!-- Nav item -->
                    
                 </ul>

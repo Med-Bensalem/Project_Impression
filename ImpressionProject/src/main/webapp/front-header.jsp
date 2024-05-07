@@ -45,6 +45,8 @@
 					  
 					    User user = (User) session.getAttribute("user");
 					%>
+					
+						<% var userRole = user.getRole(); %>
                
              		 <% if (user == null) { %>
     				<!-- Display these links if user is not logged in -->
@@ -79,13 +81,33 @@
 					                        Profile
 					                    </a>
 					                </li>
-					               
-					                <li>
-					                    <a class="dropdown-item" href="#">
-					                        <i class="fe fe-settings me-2"></i>
-					                        Admin
-					                    </a>
-					                </li>
+					               	
+					               	   <% if (user.getRole().equals("admin")) { %>
+							                <li>
+							                    <a class="dropdown-item" href="AdminServlet">
+							                        <i class="fe fe-settings me-2"></i>
+							                        Admin Space
+							                    </a>
+							                </li>
+					                   <% } %>
+					                   
+					                    <% if (user.getRole().equals("agent")) { %>
+							                <li>
+							                    <a class="dropdown-item" href="AgentImpression">
+							                        <i class="fe fe-settings me-2"></i>
+							                        Agent Space
+							                    </a>
+							                </li>
+					                   <% } %>
+					                   
+					                    <% if (user.getRole().equals("enseignant")) { %>
+							                <li>
+							                    <a class="dropdown-item" href="Impression">
+							                        <i class="fe fe-settings me-2"></i>
+							                         Enseignant Space
+							                    </a>
+							                </li>
+					                   <% } %>
 					            </ul>
 					            <div class="dropdown-divider"></div>
 					            <ul class="list-unstyled">

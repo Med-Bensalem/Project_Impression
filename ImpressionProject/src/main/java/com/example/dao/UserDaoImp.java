@@ -20,7 +20,7 @@ public class UserDaoImp implements UserDao {
     private static final String DELETE_USER = "DELETE FROM users WHERE user_id=?";
     private static final String SELECT_USER_BY_USERNAME_PASSWORD = "SELECT * FROM users WHERE username=? AND password=?";
     private static final String SELECT_USER_BY_USERNAME = "SELECT * FROM users WHERE username = ?";
-
+    private static final String SELECT_USER_COUNT_BY_ROLE = "SELECT COUNT(*) FROM users WHERE role=?";
 
     @Override
     public User getUserById(int userId) {
@@ -154,6 +154,23 @@ public class UserDaoImp implements UserDao {
             e.printStackTrace();
         }
         return user;
+    }
+    
+    @Override
+    public int getUsersCountByRole(String role) {
+        int count = 0;
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_USER_COUNT_BY_ROLE)) {
+            statement.setString(1, role);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    count = resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
 }

@@ -137,6 +137,12 @@ public class AdminServlet extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
         boolean active = Boolean.parseBoolean(request.getParameter("active"));
+        if (role == null) {
+            // Handle the case where role is null (e.g., show an error message)
+            request.setAttribute("error", "Le rôle est requis");
+            request.getRequestDispatcher("addUser.jsp").forward(request, response);
+            return;
+        }
         
         if (userDao.getUserByUsername(username) != null) {
             // Si un utilisateur avec le même nom d'utilisateur existe déjà, affichez un message d'erreur

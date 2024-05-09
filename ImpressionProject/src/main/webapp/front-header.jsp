@@ -44,9 +44,13 @@
                 	<%
 					  
 					    User user = (User) session.getAttribute("user");
+                		String userRole = null;
+                		 if (user != null) {
+                		        userRole = user.getRole(); 
+                		    }
 					%>
 					
-						<% var userRole = user.getRole(); %>
+						
                
              		 <% if (user == null) { %>
     				<!-- Display these links if user is not logged in -->

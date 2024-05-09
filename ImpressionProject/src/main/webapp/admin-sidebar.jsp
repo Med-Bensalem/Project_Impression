@@ -24,7 +24,7 @@ User userr = (User) session.getAttribute("user");
                    <% if (userr.getRole().equals("admin")) { %>
              
                     <li class="nav-item">
-                        <a class="nav-link   " href="#" >
+                        <a class="nav-link   " href="admindasboard" >
                             <i class="nav-icon fe fe-home me-2"></i>
                             Dashboard
                         </a>

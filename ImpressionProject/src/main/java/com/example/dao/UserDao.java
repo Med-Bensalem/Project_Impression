@@ -12,4 +12,5 @@ public interface UserDao {
     void deleteUser(int userId);
     User getUserByUsernameAndPassword(String username, String password);
     public User getUserByUsername(String username);
+    int getUsersCountByRole(String role); 
 }

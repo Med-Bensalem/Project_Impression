@@ -51,7 +51,7 @@
                                 <div class="card-header">
                                     <h4 class="mb-0">Ajouter un utilisateur</h4>
                                 </div>
-                                <form  class="needs-validation" novalidate action="AdminServlet?action=add" method="post" enctype="multipart/form-data">
+                                <form  action="AdminServlet?action=add" method="post" >
                                     <!-- Card body -->
                                     <div class="card-body">
 
@@ -81,7 +81,7 @@
                                                 <div class="col-md-6">
                                                     <!-- Title -->
                                                     <label for="postTitle" class="form-label">Role</label>
-                                                   <select name="role" id="roleSelect"  class="form-select">
+                                                   <select name="role" id="role"  class="form-select">
 											             <%-- Utiliser une boucle pour afficher les options des matières --%>
 												           <% List<Role> roles = (List<Role>) request.getAttribute("roles");
 												               if (roles != null) {

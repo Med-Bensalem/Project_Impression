@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.example.utilis.JDBCUtils;
 import com.example.models.Group;
 import com.example.models.Impression;
@@ -196,6 +199,27 @@ public class ImpressionDaoImp implements ImpressionDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    @Override
+    public List<Map<String, Object>> getImpressionsByMonth() {
+        List<Map<String, Object>> impressionsByMonth = new ArrayList<>();
+        String query = "SELECT MONTH(date_impression) AS month, COUNT(*) AS count FROM impressions GROUP BY MONTH(date_impression)";
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int month = resultSet.getInt("month");
+                int count = resultSet.getInt("count");
+                Map<String, Object> monthData = new HashMap<>();
+                monthData.put("month", month);
+                monthData.put("count", count);
+                impressionsByMonth.add(monthData);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return impressionsByMonth;
     }
 
 }

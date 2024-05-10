@@ -18,7 +18,7 @@
         <!-- Page Content -->
         <main id="page-content">
             <div class="header">
-                <!-- navbar -->
+                <!-- navbar -->               
                 
                 <%@ include file="admin-header.jsp" %>
               </div>

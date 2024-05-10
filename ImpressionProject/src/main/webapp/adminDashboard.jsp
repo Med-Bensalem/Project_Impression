@@ -601,65 +601,78 @@
                 </section>
             </main>
     </div>
-        <script src="${pageContext.request.contextPath}/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+     <script src="${pageContext.request.contextPath}/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script>
+var impressionsByMonthJson = '${impressionsByMonthJson}';
+
+
+    if (impressionsByMonthJson && impressionsByMonthJson !== "") { // Check if JSON string is not empty
+        var impressionsByMonth = JSON.parse(impressionsByMonthJson); // Parse JSON string
+        var seriesData = [];
+
+        // Extract month and count data from impressionsByMonth
+        for (var i = 0; i < impressionsByMonth.length; i++) {
+            var monthData = impressionsByMonth[i];
+            seriesData.push({
+                x: new Date(2024, monthData["month"] - 1, 1),
+                y: monthData["count"]
+            });
+        }
+
+        var options = {
+            series: [{
+                name: "Impressions",
+                data: seriesData
+            }],
+            chart: {
+                type: 'area',
+                height: 350,
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Impressions by Month',
+                align: 'left'
+            },
+            subtitle: {
+                text: 'Number of Impressions',
+                align: 'left'
+            },
+            xaxis: {
+                type: 'datetime',
+                labels: {
+                    format: 'MMM yyyy'
+                }
+            },
+            yaxis: {
+                opposite: true
+            },
+            legend: {
+                horizontalAlign: 'left'
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#impressionsChart"), options);
+        chart.render();
+    } else {
+        console.error("impressionsByMonthJson is empty");
+    }
+</script>
+
+
+
+
+   
         <script src="${pageContext.request.contextPath}/assets/js/vendors/chart.js"></script>
         <script src="${pageContext.request.contextPath}/assets/libs/flatpickr/dist/flatpickr.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/vendors/flatpickr.js"></script>
-<script>
-    var impressionsByMonth = ${impressionsByMonth};
-    var seriesData = [];
-    
-    // Extract month and count data from impressionsByMonth
-    impressionsByMonth.forEach(function(monthData) {
-        seriesData.push({
-            x: new Date(2024, monthData.month - 1, 1),
-            y: monthData.count
-        });
-    });
-
-    var options = {
-        series: [{
-            name: "Impressions",
-            data: seriesData
-        }],
-        chart: {
-            type: 'area',
-            height: 350,
-            zoom: {
-                enabled: false
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'straight'
-        },
-        title: {
-            text: 'Impressions by Month',
-            align: 'left'
-        },
-        subtitle: {
-            text: 'Number of Impressions',
-            align: 'left'
-        },
-        xaxis: {
-            type: 'datetime',
-            labels: {
-                format: 'MMM yyyy'
-            }
-        },
-        yaxis: {
-            opposite: true
-        },
-        legend: {
-            horizontalAlign: 'left'
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector("#impressionsChart"), options);
-    chart.render();
-</script>
 
        
   <%@ include file="jsfiles.jsp" %>

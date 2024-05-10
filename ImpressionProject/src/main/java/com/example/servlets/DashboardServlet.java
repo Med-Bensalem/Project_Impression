@@ -20,6 +20,8 @@ import com.example.dao.UserDao;
 import com.example.dao.UserDaoImp;
 import com.example.models.Group;
 
+import com.google.gson.Gson;
+
 /**
  * Servlet implementation class DashboardServlet
  */
@@ -70,8 +72,10 @@ public class DashboardServlet extends HttpServlet {
 			        request.setAttribute("totalAgents", totalAgents);
 			        
 			        List<Map<String, Object>> impressionsByMonth = impressionDao.getImpressionsByMonth();
-			        request.setAttribute("impressionsByMonth", impressionsByMonth);
-			        System.out.println(impressionsByMonth);
+			        String impressionsByMonthJson = new Gson().toJson(impressionsByMonth);
+			        System.out.println(impressionsByMonthJson);
+
+			        request.setAttribute("impressionsByMonthJson", impressionsByMonthJson);
 					 RequestDispatcher dispatcher = request.getRequestDispatcher("adminDashboard.jsp");
 				        dispatcher.forward(request, response);
 			 } else {

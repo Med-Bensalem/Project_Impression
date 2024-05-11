@@ -126,10 +126,21 @@
 
                                                 <div class=" col-md-12 mt-3">
                                                     <!-- Title -->
-                                                    <label for="dateImpression mt-2"  class="form-label">Activer le compte :</label>
-											<input type="checkbox" class="form-check-input" name="activeCheckbox" id="activeCheckbox"  >
-       												   <input type="hidden" name="active" id="activeHiddenInput"  >
-                                                </div>
+                                                 
+                                             <label for="dateImpression mt-2"  class="form-label">Activer le compte :</label>
+											<input type="hidden" name="active" id="activeHiddenInput" value="${user.active ? 'true' : 'false'}">
+
+
+											<input type="checkbox" class="form-check-input" name="activeCheckbox" id="activeCheckbox" ${user.active ? 'checked' : ''}>
+																							
+											<script>
+											  
+											    document.getElementById("activeCheckbox").addEventListener("change", function() {
+											        document.getElementById("activeHiddenInput").value = this.checked ? 'true' : 'false';
+											    });
+											</script>
+
+											</div>
 
 
 

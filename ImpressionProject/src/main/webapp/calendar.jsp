@@ -68,14 +68,51 @@
         console.log(eventsJson); 
         
         var calendar = new FullCalendar.Calendar(calendarEl, {
-           
-            events: eventsJson 
-            
-        });
+        	  events: eventsJson,
+              eventContent: function(info) {
+                  return {
+                	  html: '<div class="event-content">' +
+                      '<div class="event-title">' + info.event.title + '</div>' +
+                      
+                  '</div>'
+                  };
+              }
+          });
 
         calendar.render();
     });
 </script>
+
+<style>
+.event-content {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.event-title {
+    font-weight: bold;
+    color: #333;
+    font-size: 10px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+
+
+@media (max-width: 30px) {
+    .event-title {
+        font-size: 14px;
+    }
+    .event-date {
+        font-size: 12px;
+    }
+}
+
+</style>
     <script src="${pageContext.request.contextPath}/assets/libs/%40popperjs/core/dist/umd/popper.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/libs/fullcalendar/index.global.min.js"></script>
       

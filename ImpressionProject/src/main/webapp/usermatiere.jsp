@@ -35,14 +35,12 @@
                                             <li class="breadcrumb-item">
                                                 <a href="admin-dashboard.html">Dashboard</a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="#">CMS</a></li>
+                                       
                                             <li class="breadcrumb-item active" aria-current="page">Selectioné les matieres</li>
                                         </ol>
                                     </nav>
                                 </div>
-                                <div>
-                                    <a href="/Matiere" class="btn btn-outline-secondary">Retour</a>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -67,13 +65,19 @@
                                                 <div class="mb-3 col-md-12">
                                                     <!-- Title -->
                                                     
-                                                     <c:forEach var="matiere" items="${matieres}">
-											            <input type="checkbox" class="form-check-input fs-3" name="subject" value="${matiere.id}"> 
-											           <label class="form-check-label fs-3" for="flexCheckDefault">
-											            ${matiere.nom}
-											            </label>
-											            <br>
-											        </c:forEach>
+                                                <c:forEach var="matiere" items="${matieres}">
+												    <input type="checkbox" class="form-check-input fs-3" name="subject" value="${matiere.id}" ${matiereIds.contains(matiere.id) ? 'checked' : ''}> 
+												    <label class="form-check-label fs-3" for="flexCheckDefault">
+												        ${matiere.nom}
+												    </label>
+												    <br>
+												</c:forEach>
+
+
+
+
+
+
                                                 </div>
                                             
                                               

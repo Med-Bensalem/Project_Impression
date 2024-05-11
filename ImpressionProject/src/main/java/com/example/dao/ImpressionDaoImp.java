@@ -22,19 +22,19 @@ public class ImpressionDaoImp implements ImpressionDao {
     private static final String UPDATE_IMPRESSION = "UPDATE impressions SET id_enseignant=?, id_groupe=?, id_matiere=?, date_impression=?, document=?, etat=?, nombre_de_pages=? WHERE id=?";
     private static final String DELETE_IMPRESSION = "DELETE FROM impressions WHERE id=?";
     private static final String SELECT_IMPRESSIONS_BY_ENSEIGNANT_ID = 
-    		"SELECT imp.*, users.username AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
+    		"SELECT imp.*, users.nom AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
     		        "FROM impressions imp " +
     		        "JOIN users ON imp.id_enseignant = users.user_id " +
     		        "JOIN groups group_table ON imp.id_groupe = group_table.id " +
     		        "JOIN matieres mat ON imp.id_matiere = mat.id " +
     		        "WHERE id_enseignant = ?";
 
-    private static final String SELECT_ALL_IMPRESSIONS = "SELECT imp.*, users.username AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
+    private static final String SELECT_ALL_IMPRESSIONS = "SELECT imp.*, users.nom AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
 	        "FROM impressions imp " +
 	        "JOIN users ON imp.id_enseignant = users.user_id " +
 	        "JOIN groups group_table ON imp.id_groupe = group_table.id " +
 	        "JOIN matieres mat ON imp.id_matiere = mat.id " + "WHERE imp.etat = 'En attente'";
-    private static final String SELECT_ALL_IMPRESSIONS_LOG = "SELECT imp.*, users.username AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
+    private static final String SELECT_ALL_IMPRESSIONS_LOG = "SELECT imp.*, users.nom AS enseignant_nom, group_table.nom AS groupe_nom, mat.nom AS matiere_nom " +
 	        "FROM impressions imp " +
 	        "JOIN users ON imp.id_enseignant = users.user_id " +
 	        "JOIN groups group_table ON imp.id_groupe = group_table.id " +

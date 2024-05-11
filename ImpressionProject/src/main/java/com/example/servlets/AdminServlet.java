@@ -204,7 +204,7 @@ public class AdminServlet extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
         boolean active = Boolean.parseBoolean(request.getParameter("active"));
-
+        System.out.println(active);
         // Create a new user with the parameters
         User user = new User();
        

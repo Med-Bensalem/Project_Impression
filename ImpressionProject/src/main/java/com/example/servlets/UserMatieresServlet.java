@@ -54,6 +54,12 @@ public class UserMatieresServlet extends HttpServlet {
 	 
 			        
 			        List<Matiere> matieres = matiereDao.getAllMatieres();
+
+			      
+			        List<Integer> matiereIds = enseignementDao.getUserMatieresIds(user.getUserId());
+		            
+		           
+		            request.setAttribute("matiereIds", matiereIds);
 			        request.setAttribute("matieres", matieres);
 			        request.getRequestDispatcher("usermatiere.jsp").forward(request, response);
 		        } else {

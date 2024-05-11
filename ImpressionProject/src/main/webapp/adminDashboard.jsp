@@ -606,11 +606,11 @@
 var impressionsByMonthJson = '${impressionsByMonthJson}';
 
 
-    if (impressionsByMonthJson && impressionsByMonthJson !== "") { // Check if JSON string is not empty
-        var impressionsByMonth = JSON.parse(impressionsByMonthJson); // Parse JSON string
+    if (impressionsByMonthJson && impressionsByMonthJson !== "") { 
+        var impressionsByMonth = JSON.parse(impressionsByMonthJson); 
         var seriesData = [];
 
-        // Extract month and count data from impressionsByMonth
+     
         for (var i = 0; i < impressionsByMonth.length; i++) {
             var monthData = impressionsByMonth[i];
             seriesData.push({
@@ -665,10 +665,6 @@ var impressionsByMonthJson = '${impressionsByMonthJson}';
         console.error("impressionsByMonthJson is empty");
     }
 </script>
-
-
-
-
    
         <script src="${pageContext.request.contextPath}/assets/js/vendors/chart.js"></script>
         <script src="${pageContext.request.contextPath}/assets/libs/flatpickr/dist/flatpickr.min.js"></script>

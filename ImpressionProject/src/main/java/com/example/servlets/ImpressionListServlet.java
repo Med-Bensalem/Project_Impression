@@ -38,19 +38,28 @@ public class ImpressionListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 String action = request.getParameter("action");
 		 HttpSession session = request.getSession(false);
 		 if (session != null) {
 		        User user = (User) session.getAttribute("user");
 
 		        if (user != null) {
-	   
+		        	 if (action == null) {
+				            action = "list"; 
+				        }
+				
+				        switch (action) {
+				            case "list":
+				            	listimpression(request, response);
+				                break;
+				            case "delete":
+				            	  deleteImpression(request, response);
+				                break;
+				            default:
+				                response.sendRedirect("listimpressions?action=list");
+				        }
 
-			        int idEnseignant = user.getUserId();
-		
-			        List<Impression> impressions = impressionDao.getImpressionsByEnseignantId(idEnseignant);
-		
-			        request.setAttribute("impressions", impressions);
-			        request.getRequestDispatcher("impressionlist.jsp").forward(request, response);
+			       
 		        } else {
 		            response.sendRedirect("login.jsp"); 
 		        }
@@ -66,6 +75,36 @@ public class ImpressionListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	 private void listimpression(HttpServletRequest request, HttpServletResponse response)
+			  throws ServletException, IOException {
+		  HttpSession session = request.getSession(false);
+			
+			 
+			 if (session != null) {
+		        User user = (User) session.getAttribute("user");
+		        if (user != null) {
+		        	 int idEnseignant = user.getUserId();
+		     		
+				        List<Impression> impressions = impressionDao.getImpressionsByEnseignantId(idEnseignant);
+			
+				        request.setAttribute("impressions", impressions);
+				        request.getRequestDispatcher("impressionlist.jsp").forward(request, response);
+		   	 } else {
+		            response.sendRedirect("login.jsp"); 
+		        }
+		    } else {
+		        response.sendRedirect("login.jsp"); 
+		    }
+	    }
+	 
+	  private void deleteImpression(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException {
+		  int id = Integer.parseInt(request.getParameter("id"));
+		  
+		    impressionDao.deleteImpression(id);
+		    response.sendRedirect("listimpressions?action=list");
+	    }
 	
 	
 

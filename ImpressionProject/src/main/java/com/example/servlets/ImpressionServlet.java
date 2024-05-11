@@ -149,8 +149,8 @@ public class ImpressionServlet extends HttpServlet {
 	        
 	   
 	        impressionDao.addImpression(impression);
-
-	        response.sendRedirect(request.getContextPath() + "/impressions");
+	        response.sendRedirect("ImpressionListServlet");
+	       
 	}
 	
 	private String getFileExtension(Part part) {

@@ -34,7 +34,7 @@
                                             <a href="admin-dashboard.html">Dashboard</a>
                                         </li>
                                       
-                                        <li class="breadcrumb-item active" aria-current="page">Demande de tirage</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Liste des Impressions</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="text-end">
                             	<a href="agentimpressionslog" class="btn btn-primary">Historique</a>
-                                <a href="AgentCalendarServlet" class="btn btn-primary">View Calendrier</a>
+                                <a href="AgentCalendarServlet" class="btn btn-primary">Voir le calendrier</a>
                             </div>
                         </div>
                     </div>
@@ -59,12 +59,12 @@
                                         <table id="dataTableBasic" class="table table-hover" style="width: 100%">
                                             <thead class="table-light">
                                                 <tr>
-                                                       <th>ID</th>
-									                <th>enseignant Nom</th>
+                                                       <th>Détails</th>
+									                <th>Nom de l'enseignant</th>
 									                <th>Groupe</th>
 									              
 									          
-									                <th>Days left</th>
+									                <th>Jours restants</th>
 									             
 									                <th>État</th>
 									               
@@ -102,7 +102,7 @@
 														        <span class="badge bg-danger-soft">retard</span>
 														    </c:when>
 														    <c:otherwise>
-														        ${Math.floor((impression.dateImpression.time - today.time) / (1000 * 60 * 60 * 24))} days left
+														        ${Math.floor((impression.dateImpression.time - today.time) / (1000 * 60 * 60 * 24))} Jours restants
 														    </c:otherwise>
 														</c:choose>
 
@@ -119,13 +119,13 @@
 											           
                                                     <td>
                                                     		<div class="d-block">
-                                                    				 <a class="btn btn-outline-secondary btn-sm mx-2" href="agentimpressions?action=imprime&id=${impression.id}">
-                                                                        <i class="fe fe-download dropdown-item-icon"></i>
+                                                    				 <a class="btn btn-secondary btn-sm mx-2" href="agentimpressions?action=imprime&id=${impression.id}">
+                                                                        <span class="fe fe-download "></span>
                                                                        Imprimerr
                                                                     </a>
                                                                    
-                                                                    <a class="btn btn-danger-light btn-sm" href="agentimpressions?action=delete&id=${impression.id}">
-                                                                        <i class="fe fe-trash dropdown-item-icon"></i>
+                                                                    <a class="btn btn-danger btn-sm" href="agentimpressions?action=delete&id=${impression.id}">
+                                                                        <span class="fe fe-trash "></span>
                                                                         Supprimer
                                                                     </a>
                                                                     	</div>

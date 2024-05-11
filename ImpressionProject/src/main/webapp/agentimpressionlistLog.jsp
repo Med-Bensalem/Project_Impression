@@ -55,8 +55,8 @@
                                         <table id="dataTableBasic" class="table table-hover" style="width: 100%">
                                             <thead class="table-light">
                                                 <tr>
-                                                       <th>ID</th>
-									                <th>enseignant Nom</th>
+                                                      <th>Détails</th>
+									                <th>Nom de l'enseignant</th>
 									                <th>Groupe</th>
 									              
 									          
@@ -96,22 +96,22 @@
 												                <span class="badge bg-info-soft">${impression.etat}</span>
 												            </c:if>
 												            <c:if test="${impression.etat ne 'En attente'}">
-												                <span class="badge bg-danger">${impression.etat}</span>
+												                <span class="badge bg-success">${impression.etat}</span>
 												            </c:if>
 
 											          
                                                     
                                                     <td>
                                                     		<div class="d-block">
-                                                    				 <a class="btn btn-outline-secondary btn-sm mx-2" 
+                                                    				 <a class="btn btn-secondary btn-sm mx-2" 
                                                     				<%--  href="${pageContext.request.contextPath}/uploads/${impression.document}" --%>
                                                     	href="agentimpressionslog?action=imprime&id=${impression.id}">
-                                                                        <i class="fe fe-download dropdown-item-icon"></i>
+                                                                        <span class="fe fe-download "></span>
                                                                        Imprimerrr
                                                                     </a>
                                                                    
-                                                                    <a class="btn btn-danger-light btn-sm" href="agentimpressionslog?action=delete&id=${impression.id}">
-                                                                        <i class="fe fe-trash dropdown-item-icon"></i>
+                                                                    <a class="btn btn-danger btn-sm" href="agentimpressionslog?action=delete&id=${impression.id}">
+                                                                        <span class="fe fe-trash "></span>
                                                                         Supprimer
                                                                     </a>
                                                                     	</div>

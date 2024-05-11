@@ -78,10 +78,11 @@
 											            <td>${impression.etat}</td>
 											            <td>${impression.nombreDePages}</td>
                                                     <td>
-                                                    		 <form action="deleteimpression" method="post">
-											                    <input type="hidden" name="impressionId" value="${impression.id}">
-											                    <input class="btn btn-danger" type="submit" value="Supprimer">
-											                </form>
+                                                     <a class="btn btn-danger btn-sm" href="listimpressions?action=delete&id=${impression.id}">
+                                                                        <span class="fe fe-trash "></spqn>
+                                                                        Supprimer
+                                                                    </a>
+                                                    		
 													</td>
                                                  
                                                   

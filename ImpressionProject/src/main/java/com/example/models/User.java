@@ -2,7 +2,8 @@ package com.example.models;
 
 public class User {
     private int userId;
-    private String username;
+    private String nom;
+    private String prenom;
     private String password;
     private String email;
     private String role;
@@ -12,14 +13,31 @@ public class User {
 		super();
 	}
 
-	public User(int userId, String username, String password, String email,String role,Boolean active) {
+	public User(int userId, String nom, String prenom, String password, String email,String role,Boolean active) {
 		super();
 		this.userId = userId;
-		this.username = username;
+		this.nom = nom;
+		this.prenom = prenom;
 		this.password = password;
 		this.email = email;
 		this.role = role;
 		this.active = active;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 	
 	public void setUserId(int userId) {
@@ -38,12 +56,7 @@ public class User {
 		return userId;
 	}
 	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+
 	public String getPassword() {
 		return password;
 	}

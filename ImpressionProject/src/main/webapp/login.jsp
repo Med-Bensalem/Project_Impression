@@ -45,12 +45,15 @@
 								              </style>	
                                 </div>
                                 <!-- Form -->
+                                  <% if (request.getAttribute("errorMessage") != null) { %>
+							        <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
+							    <% } %>
                                 <form action="Login" method="post" class="needs-validation" novalidate>
                                     <!-- Username -->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Username</label>
-                                        <input type="text" id="username" name="username" class="form-control" name="email" placeholder="username here" required>
-                                        <div class="invalid-feedback">Please enter valid username.</div>
+                                     <div class="mb-3">
+                                        <label for="email" class="form-label">Adresse E-mail</label>
+                                        <input type="text" id="email" name="email" class="form-control"  placeholder="Adresse E-mail" required>
+                                        <div class="invalid-feedback">Veuillez saisir un Adresse E-mail.</div>
                                     </div>
                                     <!-- Password -->
                                     <div class="mb-3">

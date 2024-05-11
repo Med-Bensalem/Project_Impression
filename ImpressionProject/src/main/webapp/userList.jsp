@@ -24,22 +24,23 @@
             <section class="container-fluid p-4">
                 <div class="row">
                     <!-- Page Header -->
-                    <div class="col-lg-12 col-md-12 col-12">
+                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between">
                             <div>
-                                <h1 class="mb-1 h2 fw-bold">Utilisateurs</h1>
+                                <h1 class="mb-1 h2 fw-bold">Listes Utilisateurs</h1>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <a href="admin-dashboard.html">Dashboard</a>
                                         </li>
-                                      
-                                        <li class="breadcrumb-item active" aria-current="page">Comptes</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Utilisateurs</li>
+
+                                        <li class="breadcrumb-item active" aria-current="page">Listes Utilisateurs</li>
                                     </ol>
                                 </nav>
                             </div>
                             <div>
-                                <a href="AdminServlet?action=add" class="btn btn-primary">Ajouter une compte</a>
+                                <a href="AdminServlet?action=add" class="btn btn-primary">Ajouter un utilisateur </a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +57,8 @@
                                         <table id="dataTableBasic" class="table table-hover" style="width: 100%">
                                             <thead class="table-light">
                                                 <tr>
-                                                 <th>Username</th>
+                                                 <th>Nom</th>
+                                                 <th>Prénom</th>
                                                     <th>Email</th>
                                                     <th>Role</th>
                                                     <th>Action</th>
@@ -66,7 +68,8 @@
                                             <tbody>
                                                <c:forEach var="user" items="${userList}">
                                                 <tr>
-                                                    <td>${user.username}</td>
+                                                     <td>${user.nom}</td>
+                                                     <td>${user.prenom}</td>
                                                     <td>${user.email}</td>
                                                     <td>${user.role}</td>	
                                                     <td>

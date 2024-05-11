@@ -29,11 +29,11 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
+    	String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         // Retrieve user from database based on username and password
-        User user = userDao.getUserByUsernameAndPassword(username, password);
+        User user = userDao.getUserByEmailAndPassword(email, password);
         System.out.println("User ID Retrieved: " + user.getUserId());
 
         if (user != null && user.isActive()) {
@@ -49,9 +49,15 @@ public class LoginServlet extends HttpServlet {
             } else {
                 response.sendRedirect("home.jsp");
             }
-        } else {
+        } else if (user != null && ! user.isActive()){
             // User not found, redirect to login page with error message
-            response.sendRedirect("login.jsp?error=Invalid credentials");
+        	request.setAttribute("errorMessage", "Compte n'est pas activer ");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            dispatcher.forward(request, response);
+        }else {
+        	request.setAttribute("errorMessage", "Adresse Email ou mot de passe incorrect ");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

@@ -71,7 +71,7 @@
 					                        <img alt="avatar" src="${pageContext.request.contextPath}/assets/images/avatar/avatar-5.jpg" class="rounded-circle" />
 					                    </div>
 					                    <div class="ms-3 lh-1">
-					                        <h5 class="mb-1"><%= user.getUsername() %></h5>
+					                        <h5 class="mb-1"><%= user.getNom() %></h5>
                         					<p class="mb-0"><%= user.getEmail() %></p>
 					                    </div>
 					                </div>

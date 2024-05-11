@@ -132,7 +132,8 @@ public class AdminServlet extends HttpServlet {
 
     private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Récupérez les paramètres de la requête pour créer un nouvel utilisateur
-        String username = request.getParameter("username");
+    	String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String role = request.getParameter("role");
@@ -144,9 +145,9 @@ public class AdminServlet extends HttpServlet {
             return;
         }
         
-        if (userDao.getUserByUsername(username) != null) {
+        if (userDao.getUserByEmail(email) != null) {
             // Si un utilisateur avec le même nom d'utilisateur existe déjà, affichez un message d'erreur
-            request.setAttribute("error", "Le nom d'utilisateur est déjà utilisé");
+            request.setAttribute("error", "Adresse Email est déjà utilisé");
             // Redirigez l'utilisateur vers la page d'ajout d'utilisateur avec le message d'erreur
             request.getRequestDispatcher("addUser.jsp").forward(request, response);
             return; // Sortez de la méthode pour éviter d'ajouter l'utilisateur
@@ -154,7 +155,8 @@ public class AdminServlet extends HttpServlet {
 
         // Créez un nouvel utilisateur avec les paramètres récupérés
         User newUser = new User();
-        newUser.setUsername(username);
+        newUser.setPrenom(prenom);
+        newUser.setPassword(password);
         newUser.setPassword(password);
         newUser.setEmail(email);
         newUser.setRole(role);
@@ -196,7 +198,8 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         // Retrieve form parameters
     	int userId = Integer.parseInt(request.getParameter("userId"));
-        String username = request.getParameter("username");
+    	String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String role = request.getParameter("role");
@@ -205,13 +208,14 @@ public class AdminServlet extends HttpServlet {
         // Create a new user with the parameters
         User user = new User();
        
-        user.setUsername(username);
+        user.setNom(nom);
+        user.setPrenom(prenom);
         user.setPassword(password);
         user.setEmail(email);
         user.setRole(role);
         user.setActive(active);
         user.setUserId(userId);
-
+        
         // Update the user in the database
         userDao.updateUser(user);
 

@@ -10,7 +10,7 @@ public interface UserDao {
     void addUser(User user);
     void updateUser(User user);
     void deleteUser(int userId);
-    User getUserByUsernameAndPassword(String username, String password);
-    public User getUserByUsername(String username);
+    User getUserByEmailAndPassword(String email, String password);
+    public User getUserByEmail(String email);
     int getUsersCountByRole(String role); 
 }

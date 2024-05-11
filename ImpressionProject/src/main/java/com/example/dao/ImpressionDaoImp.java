@@ -66,6 +66,31 @@ public class ImpressionDaoImp implements ImpressionDao {
         }
         return null;
     }
+    
+    @Override
+    public Impression getImpressionByIdfordonw(int id) {
+        try (Connection connection = JDBCUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_IMPRESSION_BY_ID)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                	 int idEnseignant = resultSet.getInt("id_enseignant");
+                     int idGroupe = resultSet.getInt("id_groupe");
+                     int idMatiere = resultSet.getInt("id_matiere");
+                     Date dateImpression = resultSet.getDate("date_impression");
+                     String document = resultSet.getString("document");
+                     String etat = resultSet.getString("etat");
+                     int nombreDePages = resultSet.getInt("nombreDePages");
+                     
+                   
+                     return new Impression(id, idEnseignant, idGroupe, idMatiere, dateImpression, document, etat, nombreDePages);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public void addImpression(Impression impression) {

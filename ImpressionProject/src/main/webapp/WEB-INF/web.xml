@@ -113,9 +113,13 @@
     <servlet-name>default</servlet-name>
     <url-pattern>/assets/*</url-pattern>
   </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/assets/uploadimages/*</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/wtpwebapps/uploads/*</url-pattern>
+    <url-pattern>/uploads/*</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <taglib>

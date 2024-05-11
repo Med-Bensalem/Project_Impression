@@ -122,7 +122,11 @@ public class ImpressionServlet extends HttpServlet {
 	            }
 
 	            String filePath = uploadPath + File.separator + fileName;
-
+	            
+	           // projectPath = projectPath.substring(0, projectPath.indexOf(".metadata") - 1);
+	           // projectPath = projectPath+"/Project_Impression/ImpressionProject/src/main/webapp/assets/uploadimages/";
+	           
+	            
 	            // Save the file to the server
 	            try (InputStream fileContent = filePart.getInputStream();
 	                 FileOutputStream outputStream = new FileOutputStream(filePath)) {
@@ -136,8 +140,8 @@ public class ImpressionServlet extends HttpServlet {
 	                e.printStackTrace();
 	            }
 
-	            // Set the file name (without extension) as the document
-	            String document = fileName.substring(0, fileName.lastIndexOf('.'));
+	          
+	            String document = fileName;
 
 	        
 	    

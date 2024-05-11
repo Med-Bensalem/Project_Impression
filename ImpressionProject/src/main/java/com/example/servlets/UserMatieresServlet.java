@@ -89,10 +89,10 @@ public class UserMatieresServlet extends HttpServlet {
 		        enseignementDao.saveEnsMatieres(user_id, selectedSubjects);
 		        
 		       
-		        response.sendRedirect("confirmation.jsp");
+		        response.sendRedirect("Impression");
 		    } else {
 		      
-		        response.sendRedirect("error.jsp");
+		        response.sendRedirect("login.jsp");
 		    }
 	}
 

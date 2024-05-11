@@ -9,7 +9,7 @@ User userr = (User) session.getAttribute("user");
 
             <div class="vh-100" data-simplebar>
                 <!-- Brand logo -->
-                <a class="navbar-brand" href="../../index.html">
+                <a class="navbar-brand" href="HomeServlet">
                     <img src="${pageContext.request.contextPath}/assets/logoISB2.png" class="logo-img" alt="Geeks" />
                 </a>
                  <style>

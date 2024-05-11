@@ -108,38 +108,49 @@ public class AgentImpressionLog extends HttpServlet {
 		    }
 	    }
 	  
-	  private void imprime(HttpServletRequest request, HttpServletResponse response)
+	 private void imprime(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
-		  int id = Integer.parseInt(request.getParameter("id"));
-		    
+		 String idParam = request.getParameter("id");
+		 int id = Integer.parseInt(idParam);
+		    System.out.println("hi");
+		    System.out.println("id"+id);
 		    // Update the impression state to "Complete"
-		    impressionDao.updateImpressionState(id, "Complete");
-		    
-		    // Get the impression by id
-		    Impression impression = impressionDao.getImpressionById(id);
+		   // impressionDao.updateImpressionState(id, "Complete");
+		    System.out.println("hello");
+		    Impression impression = impressionDao.getImpressionByIdfordonw(id);
+		    System.out.println("hello1");
+		    System.out.println(impression);
 		    if (impression != null) {
-		        // Get the file path
-		    	 String filePath = "C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/" + impression.getDocument();
-			        File file = new File(filePath);
-			        if (file.exists()) {
-		                response.setContentType("application/octet-stream");
-		                response.setContentLength((int) file.length());
-		                response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
-
-		                FileInputStream fis = new FileInputStream(file);
-		                byte[] buffer = new byte[4096];
-		                int bytesRead;
-
-		                try {
-		                    while ((bytesRead = fis.read(buffer)) != -1) {
-		                        response.getOutputStream().write(buffer, 0, bytesRead);
-		                    }
-		                } finally {
-		                    fis.close();
-		                }
-		            } else {
-		                response.getWriter().println("File not found");
+		        // Obtenir le chemin du fichier
+		    	 String uploadPath = getServletContext().getRealPath("/uploads/");
+		        String filePath = uploadPath + impression.getDocument();
+		        System.out.println(filePath);
+		        File file = new File(filePath);
+		        if (file.exists()) {
+		            // Set response headers
+		            response.setContentType("application/octet-stream");
+		            response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
+		            
+		            // Créer les flux pour lire le fichier et écrire dans la réponse
+		            FileInputStream fis = new FileInputStream(file);
+		            BufferedInputStream bis = new BufferedInputStream(fis);
+		            OutputStream os = response.getOutputStream();
+		            
+		            // Lire le fichier et écrire dans la réponse
+		            byte[] buffer = new byte[4096];
+		            int bytesRead;
+		            while ((bytesRead = bis.read(buffer)) != -1) {
+		                os.write(buffer, 0, bytesRead);
 		            }
+		            
+		            // Fermer les flux
+		            os.close();
+		            bis.close();
+		            fis.close();
+		        } else {
+		            // Si le fichier n'existe pas, afficher un message d'erreur
+		            response.getWriter().println("Fichier non trouvé");
+		        }
 		    } else {
 		        // If impression not found, handle it accordingly
 		        response.sendRedirect("agentimpressionslog?action=list");

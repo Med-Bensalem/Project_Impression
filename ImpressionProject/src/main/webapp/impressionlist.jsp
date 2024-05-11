@@ -80,7 +80,7 @@
                                                     <td>
                                                     		 <form action="deleteimpression" method="post">
 											                    <input type="hidden" name="impressionId" value="${impression.id}">
-											                    <input type="submit" value="Supprimer">
+											                    <input class="btn btn-danger" type="submit" value="Supprimer">
 											                </form>
 													</td>
                                                  

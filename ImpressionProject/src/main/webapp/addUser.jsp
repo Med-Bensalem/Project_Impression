@@ -54,7 +54,9 @@
                                 <form  action="AdminServlet?action=add" method="post" >
                                     <!-- Card body -->
                                     <div class="card-body">
-
+										 <% if (request.getAttribute("error") != null) { %>
+								        		<p style="color: red;"><%= request.getAttribute("error") %></p>
+								   				 <% } %>
                                         <!-- Add the "Upload" button -->
                                         <div class="mt-4">
                                             <!-- Form -->
@@ -62,20 +64,33 @@
                                                 <!-- Date -->
                                             
                                                 
-                                                 <div class=" col-md-6">
+                                                  <div class=" col-md-6">
                                                     <!-- Title -->
-                                                    <label for="dateImpression"  class="form-label">username:</label>
-       												<input type="text" name="username" id="username" class="form-control">
+                                                    <label for="dateImpression"  class="form-label">Nom:</label>
+       												<input type="text" name="nom" id="nom" class="form-control" placeholder="Nom" required>
+       												<div class="invalid-feedback">Veuillez saisir un nom.</div>
+                                                </div>
+                                                <div class=" col-md-6">
+                                                    <!-- Title -->
+                                                    <label for="dateImpression"  class="form-label">Prénom:</label>
+       												<input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prénom"required>
+       												<div class="invalid-feedback">Veuillez saisir un prenom.</div>
+                                                </div>
+                                                  <div class=" col-md-6">
+                                                    <!-- Title -->
+                                                    <label for="dateImpression"  class="form-label">Adresse E-mail:</label>
+       												<input type="email" name="email" id="email" class="form-control" placeholder="Adresse E-mail"required>
+       												<div class="invalid-feedback">Veuillez saisir un Adresse E-mail.</div>
+       												
+       												
                                                 </div>
                                                  <div class=" col-md-6">
+                                                 
                                                     <!-- Title -->
-                                                    <label for="dateImpression"  class="form-label">password:</label>
-       												<input type="text" name="password" id="password" class="form-control">
-                                                </div>
-                                                 <div class=" col-md-6">
-                                                    <!-- Title -->
-                                                    <label for="dateImpression"  class="form-label">Email:</label>
-       												<input type="email" name="email" id="email" class="form-control">
+                                                    <label for="dateImpression"  class="form-label">Mot de passe :</label>
+       												<input type="text" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
+       												<div class="invalid-feedback">Veuillez saisir un mot de passe.</div>
+       												
                                                 </div>
                                                 
                                                 <div class="col-md-6">
@@ -92,9 +107,9 @@
 											        </select>
                                                 </div>
                                                 
-                                                <div class=" col-md-12 mt-3">
+                                                <div class=" col-md-6 mt-5">
                                                     <!-- Title -->
-                                                    <label for="dateImpression mt-2"  class="form-label">Activer le compte :</label>
+                                                    <label for="dateImpression "  class="form-label">Activer le compte :</label>
        												<input type="checkbox" class="form-check-input " name="activeCheckbox" id="activeCheckbox" >
        												   <input type="hidden" name="active" id="activeHiddenInput" value="true">
                                                 </div>

@@ -21,7 +21,7 @@
 	 
 
         <link rel="canonical" href="sign-in.html">
-        <title>Sign in | Geeks - Bootstrap 5 Template</title>
+        <title>IIT | Impression Platform</title>
     </head>
       <%@ include file="front-header.jsp" %>
  <main>
@@ -32,44 +32,45 @@
                     <div class="row align-items-center">
                         <!-- col -->
                         <div class="col-lg-6 mb-6 mb-lg-0">
-                            <div>
-                                <!-- heading -->
-                                <h5 class="text-dark mb-4">
-                                    <i class="fe fe-check icon-xxs icon-shape bg-light-success text-success rounded-circle me-2"></i>
-                                    Most trusted education platform
-                                </h5>
-                                <!-- heading -->
-                                <h1 class="display-3 fw-bold mb-3">Grow your skills and advance career</h1>
-                                <!-- para -->
-                                <p class="pe-lg-10 mb-5">
-                                    Start, switch, or advance your career with more than 5,000 courses, Professional Certificates, and degrees from world-class universities and companies.
-                                </p>
-                                <!-- btn -->
-                                <a href="#" class="btn btn-primary">Join Free Now</a>
-                                <a href="https://youtu.be/OPPJoA8pnCI?si=BA_AxltuHA7EnZlF" class="glightbox fs-4 text-inherit ms-3">
-                                    <img src="${pageContext.request.contextPath}/assets/images/svg/play-btn.svg" alt="play" class="me-2" />
-                                    Watch Demo
-                                </a>
-                            </div>
-                        </div>
+							    <div>
+							        <!-- En-tête -->
+							        <h5 class="text-dark mb-4">
+							            <i class="fe fe-check icon-xxs icon-shape bg-light-success text-success rounded-circle me-2"></i>
+							            Plateforme de Gestion d'Impression Fiable
+							        </h5>
+							        <!-- Titre -->
+							        <h1 class="display-3 fw-bold mb-3">Gérez efficacement vos ressources d'impression</h1>
+							        <!-- Paragraphe -->
+							        <p class="pe-lg-10 mb-5">
+							            Optimisez les ressources d'impression de votre institution avec notre plateforme complète. Simplifiez les processus d'impression, réduisez le gaspillage et assurez la disponibilité des services d'impression sur tout votre campus.
+							        </p>
+							      
+							        <a href="https://youtu.be/OPPJoA8pnCI?si=BA_AxltuHA7EnZlF" class="glightbox fs-4 text-inherit ms-3">
+							            <img src="${pageContext.request.contextPath}/assets/images/svg/play-btn.svg" alt="play" class="me-2" />
+							            Regarder la démo
+							        </a>
+							    </div>
+							</div>
+
                         <!-- col -->
                         <div class="col-lg-6 d-flex justify-content-center">
                             <!-- images -->
                             <div class="position-relative">
                                 <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/bg-thumb.svg" alt="img" />
-                                <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/girl-image.png" alt="girl" class="w-100 w-md-auto position-absolute end-0 bottom-0" />
+                                <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/girl-image-iit.png" alt="girl" class="w-100 w-md-auto position-absolute end-0 bottom-0" />
                                
                                 <img
-                                    src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/frame-2.svg"
-                                    alt="frame"
-                                    class="position-absolute bottom-0 start-0 ms-lg-n8 ms-n6 mb-n7 d-none d-md-inline-block" />
+                                    src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/trophy.svg"
+                                   alt="trophy"    class="position-absolute bottom-0 start-0 ms-lg-n8 ms-n6 mb-n7 d-none d-md-inline-block" />
                                 <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/target.svg" alt="target" class="position-absolute bottom-0 mb-8 ms-n8 ms-lg-n1 d-none d-md-inline-block" />
                                 <img
                                     src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/sound.svg"
                                     alt="sound"
                                     class="position-absolute top-50 mt-n8 ms-n8 d-none d-md-inline-block"
                                     style="left: -100px" />
-                                <img src="${pageContext.request.contextPath}/assets/images/background/acedamy-img/trophy.svg" alt="trophy" class="position-absolute top-0 start-0 ms-n8 d-none d-md-inline-block" />
+                                    
+                                    
+                                
                             </div>
                         </div>
                     </div>

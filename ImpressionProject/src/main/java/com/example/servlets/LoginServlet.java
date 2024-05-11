@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             if (user.getRole().equals("agent")) {
                 response.sendRedirect("agentimpressionlist.jsp");
             } else if (user.getRole().equals("admin")) {
-                response.sendRedirect("adminDashboard.jsp");
+                response.sendRedirect("DashboardServlet");
             } else if (user.getRole().equals("enseignant")) {
                 response.sendRedirect("addimpression.jsp");
             } else {

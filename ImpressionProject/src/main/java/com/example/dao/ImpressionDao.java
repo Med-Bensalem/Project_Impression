@@ -15,4 +15,5 @@ public interface ImpressionDao {
 		void updateImpressionState(int id, String state);
 		List<Impression> getAllImpressionslog();
 		List<Map<String, Object>> getImpressionsByMonth();
+		Impression getImpressionByIdfordonw(int id);
 }

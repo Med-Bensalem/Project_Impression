@@ -121,7 +121,7 @@
                                                     		<div class="d-block">
                                                     				 <a class="btn btn-outline-secondary btn-sm mx-2" href="agentimpressions?action=imprime&id=${impression.id}">
                                                                         <i class="fe fe-download dropdown-item-icon"></i>
-                                                                       Imprimer
+                                                                       Imprimerr
                                                                     </a>
                                                                    
                                                                     <a class="btn btn-danger-light btn-sm" href="agentimpressions?action=delete&id=${impression.id}">

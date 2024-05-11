@@ -60,7 +60,7 @@
 									                <th>Groupe</th>
 									              
 									          
-									                <th>Days left</th>
+									             
 									             
 									                <th>État</th>
 									               
@@ -89,19 +89,7 @@
 											           
 											         
 											           
-												           <td>
-														 <c:set var="today" value="<%= new java.util.Date() %>" />
-
-														<c:choose>
-														    <c:when test="${impression.dateImpression.before(today)}">
-														        <span class="badge bg-danger-soft">retard</span>
-														    </c:when>
-														    <c:otherwise>
-														        ${Math.floor((impression.dateImpression.time - today.time) / (1000 * 60 * 60 * 24))} days left
-														    </c:otherwise>
-														</c:choose>
-
-														</td>
+												           
 														
 											           <td>
 														   <c:if test="${impression.etat eq 'En attente'}">
@@ -115,10 +103,11 @@
                                                     
                                                     <td>
                                                     		<div class="d-block">
-                                                    				 <a class="btn btn-outline-secondary btn-sm mx-2" download="C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/${impression.document}"
-                                                    				 href="C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/${impression.document}">
+                                                    				 <a class="btn btn-outline-secondary btn-sm mx-2" 
+                                                    				<%--  href="${pageContext.request.contextPath}/uploads/${impression.document}" --%>
+                                                    	href="agentimpressionslog?action=imprime&id=${impression.id}">
                                                                         <i class="fe fe-download dropdown-item-icon"></i>
-                                                                       Imprimer
+                                                                       Imprimerrr
                                                                     </a>
                                                                    
                                                                     <a class="btn btn-danger-light btn-sm" href="agentimpressionslog?action=delete&id=${impression.id}">

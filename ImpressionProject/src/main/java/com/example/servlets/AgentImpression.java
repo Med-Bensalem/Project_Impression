@@ -111,43 +111,39 @@ public class AgentImpression extends HttpServlet {
 	 private void imprime(HttpServletRequest request, HttpServletResponse response)
 		        throws ServletException, IOException {
 		    int id = Integer.parseInt(request.getParameter("id"));
-		    
-		    // Update the impression state to "Complete"
 		    impressionDao.updateImpressionState(id, "Complete");
-		    
-		    Impression impression = impressionDao.getImpressionById(id);
+		    Impression impression = impressionDao.getImpressionByIdfordonw(id);
 		    if (impression != null) {
-		        // Get the file path
-		        String filePath = "C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/" + getFileNameById(id);
+		        // Obtenir le chemin du fichier
+		        String filePath = "C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/" + impression.getDocument();
 		        File file = new File(filePath);
 		        if (file.exists()) {
 		            // Set response headers
 		            response.setContentType("application/octet-stream");
 		            response.setHeader("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
 		            
-		           
+		            // Créer les flux pour lire le fichier et écrire dans la réponse
 		            FileInputStream fis = new FileInputStream(file);
 		            BufferedInputStream bis = new BufferedInputStream(fis);
-		            
-		           
 		            OutputStream os = response.getOutputStream();
+		            
+		            // Lire le fichier et écrire dans la réponse
 		            byte[] buffer = new byte[4096];
 		            int bytesRead;
 		            while ((bytesRead = bis.read(buffer)) != -1) {
 		                os.write(buffer, 0, bytesRead);
 		            }
 		            
-		           
+		            // Fermer les flux
+		            os.close();
 		            bis.close();
 		            fis.close();
-		            os.close();
 		        } else {
-		            
-		            response.getWriter().println("File not found");
+		            // Si le fichier n'existe pas, afficher un message d'erreur
+		            response.getWriter().println("Fichier non trouvé");
 		        }
-		       
 		    } else {
-		        // If impression not found, handle it accordingly
+		        // Si l'impression n'existe pas, rediriger vers la page d'impressions
 		        response.sendRedirect("agentimpressions?action=list");
 		    }
 		}

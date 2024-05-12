@@ -4,7 +4,9 @@
 <%@ page import="com.example.models.Role" %>
 <%@ page import="java.util.List" %>
   <%@ include file="cssfiles.jsp" %>
-
+<head>
+<title>Ajout Role</title>
+</head>
    <div id="db-wrapper">
         <!-- navbar vertical -->
 
@@ -33,6 +35,10 @@
                                     <!-- Breadcrumb -->
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
+                                         <li class="breadcrumb-item">
+                                                <a href="admin-dashboard.html">Dashboard</a>
+                                            </li>
+                                            <li class="breadcrumb-item"><a href="#">Gestion Roles</a></li>
                                           
                                          
                                             <li class="breadcrumb-item active" aria-current="page">Ajouter un rôle</li>
@@ -65,7 +71,8 @@
                                                  <div class=" col-md-12">
                                                     <!-- Title -->
                                                     <label for="dateImpression"  class="form-label">Nom du rôle :</label>
-       												<input type="text" name="roleName" id="roleName" class="form-control">
+       												<input type="text" name="roleName" id="roleName" class="form-control" placeholder="Nom" required>
+       												<div class="invalid-feedback">Veuillez saisir un Nom.</div>
                                                 </div>
                                                 
                                                 

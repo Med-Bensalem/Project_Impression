@@ -55,7 +55,7 @@
                             <div class="card border-0 mb-4">
                                 <!-- Card header -->
                                 <div class="card-header">
-                                    <h4 class="mb-0">Ajouter Group</h4>
+                                    <h4 class="mb-0">Ajouter un Groupe</h4>
                                 </div>
                                 <form action="GroupServlet" method="post" class="needs-validation" novalidate>
                                     <!-- Card body -->
@@ -69,18 +69,18 @@
                                                	  <input type="hidden" name="action" value="add">
                                                 <div class="mb-3 col-md-12">
                                                     <!-- Title -->
-                                                    <label for="postTitle" class="form-label">Nom Group</label>
-                                                    <input type="text" id="nom" name="nom" class="form-control text-dark" placeholder="Nom du matiere" required >
+                                                    <label for="postTitle" class="form-label">Nom Groupe</label>
+                                                    <input type="text" id="nom" name="nom" class="form-control text-dark" placeholder="Nom du Groupe" required >
                                                    
-                                                    <div class="invalid-feedback">Please enter group.</div>
+                                                    <div class="invalid-feedback">Veuillez saisir un Nom.</div>
                                                 </div>
                                                 <!-- Slug -->
                                               
                                                 <!-- Excerpt -->
                                                 <div class="mb-3 col-md-12">
-                                                    <label for="Excerpt" class="form-label">Nombre d etudiant</label>
-                                                     <input type="text" id="nbetudiants" name="nbetudiants" class="form-control text-dark" placeholder="nbetudiants" required >
-                                               
+                                                    <label for="Excerpt" class="form-label">Nombre Etudiant</label>
+                                                     <input type="text" id="nbetudiants" name="nbetudiants" class="form-control text-dark" placeholder="Nombre Etudiants" required >
+                                               <div class="invalid-feedback">Veuillez saisir un Nombre Etudiant.</div>
                                                    
                                                 </div>
 

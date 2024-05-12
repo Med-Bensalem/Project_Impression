@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<head><title>Liste Historiques </title></head>
   <%@ include file="cssfiles.jsp" %>
 
    <div id="db-wrapper">
@@ -27,14 +27,14 @@
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between">
                             <div>
-                                <h1 class="mb-1 h2 fw-bold">Liste des Impressions</h1>
+                                <h1 class="mb-1 h2 fw-bold">Liste Historiques  Demande Impressions</h1>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <a href="admin-dashboard.html">Dashboard</a>
                                         </li>
                                       
-                                        <li class="breadcrumb-item active" aria-current="page">Demande de tirage</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Liste Historiques  Demande Impressions</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -56,7 +56,7 @@
                                             <thead class="table-light">
                                                 <tr>
                                                       <th>Détails</th>
-									                <th>Nom de l'enseignant</th>
+									                <th>Enseignant</th>
 									                <th>Groupe</th>
 									              
 									          
@@ -107,13 +107,14 @@
                                                     				<%--  href="${pageContext.request.contextPath}/uploads/${impression.document}" --%>
                                                     	href="agentimpressionslog?action=imprime&id=${impression.id}">
                                                                         <span class="fe fe-download "></span>
-                                                                       Imprimerrr
+                                                                       Imprimer
                                                                     </a>
                                                                    
-                                                                    <a class="btn btn-danger btn-sm" href="agentimpressionslog?action=delete&id=${impression.id}">
-                                                                        <span class="fe fe-trash "></span>
-                                                                        Supprimer
-                                                                    </a>
+                                                                   
+                                                                    <a class="btn btn-danger btn-sm"  onclick="openDeleteConfirmation(${impression.id})">
+																	    <i class="fe fe-trash "></i>
+																	    Supprimer
+																	</a>
                                                                     	</div>
                                                     		
 													</td>
@@ -133,6 +134,34 @@
                </section>
         </main>
     </div>
+    
+    <div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationLabel">Confirmation de la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet Historique de Demande ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a id="deleteUserLink" class="btn btn-danger" href="#">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+function openDeleteConfirmation(id) {
+    var deleteUserLink = document.getElementById('deleteUserLink');
+    deleteUserLink.href = "agentimpressionslog?action=delete&id=" + id;
+    $('#deleteConfirmation').modal('show');
+}
+</script>
          
               <%@ include file="jsfiles.jsp" %>
 

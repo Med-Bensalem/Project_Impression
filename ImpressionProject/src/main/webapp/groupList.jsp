@@ -59,12 +59,12 @@
                                         <table id="dataTableBasic" class="table table-hover" style="width: 100%">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th>Groupe</th>
-                                                     
+                                                    <th>Nom Groupe</th>
+                                                    
                                                         <th>Nombre Etudiants</th>
                                                         
-                                                        <th>Action</th>
-                                                   
+                                                        <th>Actions</th>
+                                                 
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -82,16 +82,16 @@
                                                                 </a>
                                                                 <span class="dropdown-menu"
                                                                     aria-labelledby="courseDropdown1">
-                                                                    <span class="dropdown-header">Settings</span>
+                                                                    <span class="dropdown-header">Paramétres</span>
                                                                     <a class="dropdown-item" href="Group?action=edit&id=${group.id}">
                                                                         <i class="fe fe-edit dropdown-item-icon"></i>
                                                                         Modifier
                                                                     </a>
                                                                    
-                                                                    <a class="dropdown-item" href="Matiere?action=delete&id=${group.id}">
-                                                                        <i class="fe fe-trash dropdown-item-icon"></i>
-                                                                        Supprimer
-                                                                    </a>
+                                                                    <a class="dropdown-item" href="#" onclick="openDeleteConfirmation(${group.id})">
+																	    <i class="fe fe-trash dropdown-item-icon"></i>
+																	    Supprimer
+																	</a>
                                                                 </span>
                                                             </span>
 													</td>
@@ -111,5 +111,35 @@
                </section>
         </main>
     </div>
+    
+     
+    <!-- Modal for confirmation -->
+<div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationLabel">Confirmation de la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet Groupe ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a id="deleteUserLink" class="btn btn-danger" href="#">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+function openDeleteConfirmation(id) {
+    var deleteUserLink = document.getElementById('deleteUserLink');
+    deleteUserLink.href = "GroupServlet?action=delete&id=" + id;
+    $('#deleteConfirmation').modal('show');
+}
+</script>
          
               <%@ include file="jsfiles.jsp" %>

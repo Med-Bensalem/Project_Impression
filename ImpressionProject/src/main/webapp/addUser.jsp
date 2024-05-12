@@ -4,7 +4,9 @@
 <%@ page import="com.example.models.Role" %>
 <%@ page import="java.util.List" %>
   <%@ include file="cssfiles.jsp" %>
-
+<head>
+<title> Ajout User</title>
+</head>
    <div id="db-wrapper">
         <!-- navbar vertical -->
 
@@ -33,11 +35,17 @@
                                     <!-- Breadcrumb -->
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                          
+                                           <li class="breadcrumb-item">
+                                            <a href="admin-dashboard.html">Dashboard</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Gestion Utilisateurs</li>
                                          
                                             <li class="breadcrumb-item active" aria-current="page">Ajouter un utilisateur</li>
                                         </ol>
                                     </nav>
+                                </div>
+                                <div>
+                                    <a href="AdminServlet" class="btn btn-outline-secondary">Retour</a>
                                 </div>
                                
                             </div>

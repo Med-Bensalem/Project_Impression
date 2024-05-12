@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<head><title>Liste des Impressions</title></head>
   <%@ include file="cssfiles.jsp" %>
 
    <div id="db-wrapper">
@@ -59,8 +59,8 @@
                                         <table id="dataTableBasic" class="table table-hover" style="width: 100%">
                                             <thead class="table-light">
                                                 <tr>
-                                                       <th>Détails</th>
-									                <th>Nom de l'enseignant</th>
+                                                     <th>Détails</th>
+									                <th>Enseignant</th>
 									                <th>Groupe</th>
 									              
 									          
@@ -68,7 +68,7 @@
 									             
 									                <th>État</th>
 									               
-									                 <th>Action</th>
+									                 <th>Actions</th>
                                                    
                                                 </tr>
                                             </thead>
@@ -95,16 +95,23 @@
 											         
 											           
 												           <td>
-														 <c:set var="today" value="<%= new java.util.Date() %>" />
+																<c:set var="today" value="<%= new java.util.Date() %>" />
 
-														<c:choose>
-														    <c:when test="${impression.dateImpression.before(today)}">
-														        <span class="badge bg-danger-soft">retard</span>
-														    </c:when>
-														    <c:otherwise>
-														        ${Math.floor((impression.dateImpression.time - today.time) / (1000 * 60 * 60 * 24))} Jours restants
-														    </c:otherwise>
-														</c:choose>
+																	<c:set var="dateFormat" value="<%= new java.text.SimpleDateFormat(\"yyyy-MM-dd\") %>" />
+																	<c:set var="dateImpression" value="${dateFormat.parse(impression.dateImpression)}" />
+																	<c:set var="joursRestants" value="${(dateImpression.time - today.time) / (1000 * 60 * 60 * 24)}" />
+																	
+																	<c:set var="joursRestantsInt" value="${joursRestants.intValue()}" />
+																	
+																	${joursRestantsInt} jour(s) restant(s)
+
+
+
+
+
+
+
+
 
 														</td>
 														
@@ -118,16 +125,23 @@
 
 											           
                                                     <td>
-                                                    		<div class="d-block">
+                                                    		<div class="col-md-12 row">
+                                                    				<div class="col-md-6">
                                                     				 <a class="btn btn-secondary btn-sm mx-2" href="agentimpressions?action=imprime&id=${impression.id}">
                                                                         <span class="fe fe-download "></span>
-                                                                       Imprimerr
+                                                                       Imprimer
                                                                     </a>
+                                                    				 </div>
+                                                    				 <div class="col-md-6">
+                                                    				  
+                                                                    
+                                                                    <a class="btn btn-danger btn-sm"  onclick="openDeleteConfirmation(${impression.id})">
+																	    <i class="fe fe-trash "></i>
+																	    Supprimer
+																	</a>
+                                                    				 </div>
                                                                    
-                                                                    <a class="btn btn-danger btn-sm" href="agentimpressions?action=delete&id=${impression.id}">
-                                                                        <span class="fe fe-trash "></span>
-                                                                        Supprimer
-                                                                    </a>
+                                                                   
                                                                     	</div>
                                                     		
 													</td>
@@ -147,6 +161,32 @@
                </section>
         </main>
     </div>
-         
+          <div class="modal fade" id="deleteConfirmation" tabindex="-1" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationLabel">Confirmation de la suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet Demande ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a id="deleteUserLink" class="btn btn-danger" href="#">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+function openDeleteConfirmation(id) {
+    var deleteUserLink = document.getElementById('deleteUserLink');
+    deleteUserLink.href = "agentimpressions?action=delete&id=" + id;
+    $('#deleteConfirmation').modal('show');
+}
+</script>
               <%@ include file="jsfiles.jsp" %>
 

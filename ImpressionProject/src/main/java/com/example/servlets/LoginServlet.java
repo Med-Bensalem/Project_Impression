@@ -34,18 +34,17 @@ public class LoginServlet extends HttpServlet {
 
         // Retrieve user from database based on username and password
         User user = userDao.getUserByEmailAndPassword(email, password);
-        System.out.println("User ID Retrieved: " + user.getUserId());
 
         if (user != null && user.isActive()) {
             // User found, set session attribute and redirect to home page
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             if (user.getRole().equals("agent")) {
-                response.sendRedirect("agentimpressionlist.jsp");
+                response.sendRedirect("AgentImpression");
             } else if (user.getRole().equals("admin")) {
                 response.sendRedirect("DashboardServlet");
             } else if (user.getRole().equals("enseignant")) {
-                response.sendRedirect("addimpression.jsp");
+                response.sendRedirect("Impression");
             } else {
                 response.sendRedirect("home.jsp");
             }

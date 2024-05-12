@@ -115,7 +115,9 @@ public class AgentImpression extends HttpServlet {
 		    Impression impression = impressionDao.getImpressionByIdfordonw(id);
 		    if (impression != null) {
 		        // Obtenir le chemin du fichier
-		        String filePath = "C:/Users/hatem/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ImpressionProject/uploads/" + impression.getDocument();
+		    	String uploadPath = getServletContext().getRealPath("/uploads/");
+		        String filePath = uploadPath + impression.getDocument();
+		        System.out.println(filePath);
 		        File file = new File(filePath);
 		        if (file.exists()) {
 		            // Set response headers

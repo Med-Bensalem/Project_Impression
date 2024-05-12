@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<head><title>Demande Tirage </title></head>
   <%@ include file="cssfiles.jsp" %>
 
    <div id="db-wrapper">
@@ -33,7 +33,7 @@
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item">
-                                                <a href="admin-dashboard.html">Demande Tirage</a>
+                                                <a href="admin-dashboard.html">Dashboard</a>
                                             </li>
                                          
                                             <li class="breadcrumb-item active" aria-current="page">Demande Tirage</li>

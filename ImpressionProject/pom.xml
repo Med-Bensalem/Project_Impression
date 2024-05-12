@@ -24,11 +24,7 @@
 		    <scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>Authentification</groupId>
-			<artifactId>Authentification</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 		
 		<dependency>
     <groupId>com.google.code.gson</groupId>

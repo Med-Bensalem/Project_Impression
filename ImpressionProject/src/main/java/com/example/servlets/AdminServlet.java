@@ -148,13 +148,20 @@ public class AdminServlet extends HttpServlet {
         if (userDao.getUserByEmail(email) != null) {
             // Si un utilisateur avec le même nom d'utilisateur existe déjà, affichez un message d'erreur
             request.setAttribute("error", "Adresse Email est déjà utilisé");
+            RoleDao roleDao = new RoleDaoImp();
+            List<Role> roles = roleDao.getAllRoles();
+
+            // Passer la liste des matières à la JSP
+            request.setAttribute("roles", roles);
             // Redirigez l'utilisateur vers la page d'ajout d'utilisateur avec le message d'erreur
             request.getRequestDispatcher("addUser.jsp").forward(request, response);
+            
             return; // Sortez de la méthode pour éviter d'ajouter l'utilisateur
         }
 
         // Créez un nouvel utilisateur avec les paramètres récupérés
         User newUser = new User();
+        newUser.setNom(nom);
         newUser.setPrenom(prenom);
         newUser.setPassword(password);
         newUser.setPassword(password);

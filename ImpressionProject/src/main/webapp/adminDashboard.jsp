@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="cssfiles.jsp" %>
 
 
-  <%@ include file="cssfiles.jsp" %>
+<head>
+<title> Dashboard</title>
+</head>
+
+
 <script src="https://kit.fontawesome.com/ab18cab0ff.js" crossorigin="anonymous"></script>
    <div id="db-wrapper">
         <!-- navbar vertical -->
@@ -112,28 +117,7 @@
                                     <div>
                                         <h4 class="mb-0">Impressions par mois</h4>
                                     </div>
-                                    <div>
-                                        <div class="dropdown dropstart">
-                                            <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="courseDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fe fe-more-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="courseDropdown1">
-                                                <span class="dropdown-header">Settings</span>
-                                                <a class="dropdown-item" href="#">
-                                                    <i class="fe fe-external-link dropdown-item-icon"></i>
-                                                    Export
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    <i class="fe fe-mail dropdown-item-icon"></i>
-                                                    Email Report
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    <i class="fe fe-download dropdown-item-icon"></i>
-                                                    Download
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <!-- Card body -->
                                 <div class="card-body">
@@ -161,7 +145,7 @@ var impressionsByMonthJson = '${impressionsByMonthJson}';
         for (var i = 0; i < impressionsByMonth.length; i++) {
             var monthData = impressionsByMonth[i];
             seriesData.push({
-                x: new Date(2024, monthData["month"] - 1, 1),
+                x: new Date(2024, monthData["month"] , 1),
                 y: monthData["count"]
             });
         }

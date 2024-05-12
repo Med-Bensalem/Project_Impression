@@ -55,8 +55,13 @@
 					        <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
 					            <div class="avatar avatar-md avatar-indicators avatar-online">
 					                <img alt="avatar" src="${pageContext.request.contextPath}/assets/images/avatar/avatar-5.jpg" class="rounded-circle" />
+					            
 					            </div>
+					            
+					            
+					            
 					        </a>
+					        
 					        <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
 					            <div class="dropdown-item">
 					                <div class="d-flex">
@@ -64,8 +69,8 @@
 					                        <img alt="avatar" src="${pageContext.request.contextPath}/assets/images/avatar/avatar-5.jpg" class="rounded-circle" />
 					                    </div>
 					                    <div class="ms-3 lh-1">
-					                       <h5 class="mb-1"><%= user.getNom() %></h5>
-                        					<p class="mb-0"><%= user.getEmail() %></p>
+					                       
+                        					<p class="mb-0" style="margin-top:10px"><%= user.getEmail() %></p>
 					                    </div>
 					                </div>
 					            </div>
@@ -91,8 +96,9 @@
 					                </li>
 					            </ul>
 					        </div>
+					        
 					    </li>
-					
+					      <li><h5 class="mx-2" style="margin-top:10px">${user.getNom()} ${user.getPrenom()}</h5></li>
                         </ul>
                     </div>
                 </nav>

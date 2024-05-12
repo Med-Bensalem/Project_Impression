@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<head>
+<title> Calendrier</title>
+</head>
   <%@ include file="cssfiles.jsp" %>
 
    <div id="db-wrapper">
@@ -96,10 +98,10 @@
     font-weight: bold;
     color: #333;
     font-size: 10px;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
+    word-wrap: break-word; /* Allow text to wrap */
+    white-space: normal; /* Allow text to wrap */
 }
+
 
 
 

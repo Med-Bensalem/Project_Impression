@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-  <%@ include file="cssfiles.jsp" %>
+   <head>
+ <%@ include file="cssfiles.jsp" %>
+ <title>Modifier Groupe</title>
+</head>
 
    <div id="db-wrapper">
         <!-- navbar vertical -->
@@ -34,13 +37,14 @@
                                             <li class="breadcrumb-item">
                                                 <a href="admin-dashboard.html">Dashboard</a>
                                             </li>
+                                             <li class="breadcrumb-item active" aria-current="page">Gestion Groupes</li>
                                           
                                             <li class="breadcrumb-item active" aria-current="page">Modifier Groupe</li>
                                         </ol>
                                     </nav>
                                 </div>
                                 <div>
-                                    <a href="/Matiere" class="btn btn-outline-secondary">Retour</a>
+                                    <a href="GroupServlet" class="btn btn-outline-secondary">Retour</a>
                                 </div>
                             </div>
                         </div>

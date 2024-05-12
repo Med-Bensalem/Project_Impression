@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-  <%@ include file="cssfiles.jsp" %>
+  <head>
+ <%@ include file="cssfiles.jsp" %>
+ <title>Listes des Groupes</title>
+</head>
 
    <div id="db-wrapper">
         <!-- navbar vertical -->
@@ -27,90 +30,50 @@
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between">
                             <div>
-                                <h1 class="mb-1 h2 fw-bold">Groups</h1>
+                                <h1 class="mb-1 h2 fw-bold">Listes des Groupes</h1>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <a href="admin-dashboard.html">Dashboard</a>
                                         </li>
+                                        
+                                        <li class="breadcrumb-item active" aria-current="page">Gestion Groupes</li>
                                       
-                                        <li class="breadcrumb-item active" aria-current="page">Groups</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Listes Groupes</li>
                                     </ol>
                                 </nav>
                             </div>
                             <div>
-                                <a href="addGroup.jsp" class="btn btn-primary">Ajouter un group</a>
+                                <a href="addGroup.jsp" class="btn btn-primary">Ajouter un Groupe</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <!-- Card -->
-                        <div class="card rounded-3">
-                            <!-- Card Header -->
-                           
-                            <div class="p-4 row">
-                                <!-- Form -->
-                                <form class="d-flex align-items-center col-12 col-md-8 col-lg-3">
-                                    <span class="position-absolute ps-3 search-icon">
-                                        <i class="fe fe-search"></i>
-                                    </span>
-                                    <input type="search" class="form-control ps-6" placeholder="recherce groups">
-                                </form>
-                            </div>
-                            <div>
-                                <div class="tab-content" id="tabContent">
-                                    <!-- Tab -->
-                                    <div class="tab-pane fade show active" id="all-post" role="tabpanel"
-                                        aria-labelledby="all-post-tab">
-                                        <div class="table-responsive">
-                                            <!-- Table -->
-                                            <table
-                                                class="table mb-0 text-nowrap table-centered table-hover table-with-checkbox table-centered table-hover">
-                                                <!-- Table Head -->
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input"
-                                                                    id="checkAll">
-                                                                <label class="form-check-label" for="checkAll"></label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Group</th>
-                                                      
-                                                        <th>nombre etudiants</th>
+                    <div class="row">
+                        <!-- basic table -->
+                        <div class="col-md-12 col-12 mb-5">
+                            <div class="card">
+                              
+                                <div class="card-body">
+                                    <div class="table-card">
+                                        <table id="dataTableBasic" class="table table-hover" style="width: 100%">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Groupe</th>
+                                                     
+                                                        <th>Nombre Etudiants</th>
                                                         
                                                         <th>Action</th>
-                                                      
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Table body -->
-                                                     <c:forEach var="group" items="${groups}">
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check">
-                                                                <input type="checkbox" class="form-check-input"
-                                                                    id="postOne">
-                                                                <label class="form-check-label" for="postOne"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <h5 class="mb-0">
-                                                                <a href="#" class="text-inherit">${group.nom}</a>
-                                                            </h5>
-                                                        </td>
-                                                       
-                                                        <td>
-                                                            <a href="#" class="text-inherit">${group.nbetudiants} Etudiants</a>
-                                                        </td>
-                                                       
-                                                       
-                                                       
-                                                        <td>
-                                                            <span class="dropdown dropstart">
+                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                             <c:forEach var="group" items="${groups}">
+                                                <tr>
+                                                    <td>${group.nom}</td>
+                                                    <td>${group.nbetudiants}</td>
+                                                    <td>
+                                                    		<span class="dropdown dropstart">
                                                                 <a class="btn-icon btn btn-ghost btn-sm rounded-circle"
                                                                     href="#" role="button" id="courseDropdown1"
                                                                     data-bs-toggle="dropdown" data-bs-offset="-20,20"
@@ -125,31 +88,28 @@
                                                                         Modifier
                                                                     </a>
                                                                    
-                                                                    <a class="dropdown-item" href="Group?action=delete&id=${group.id}">
+                                                                    <a class="dropdown-item" href="Matiere?action=delete&id=${group.id}">
                                                                         <i class="fe fe-trash dropdown-item-icon"></i>
                                                                         Supprimer
                                                                     </a>
                                                                 </span>
                                                             </span>
-                                                        </td>
-                                                    </tr>
-                                                       </c:forEach>
-                                                   </tbody>
-                                            </table>
-                                        </div>
+													</td>
+                                                 
+                                                  
+                                                </tr>
+                                                 </c:forEach>
+                                               
+                                            </tbody>
+                                        </table>
                                     </div>
-                                   
-                                        
                                 </div>
                             </div>
-                            <!-- Card Footer -->
-                          
                         </div>
                     </div>
-                </div>
-            </section>
+              
+               </section>
         </main>
     </div>
          
               <%@ include file="jsfiles.jsp" %>
-

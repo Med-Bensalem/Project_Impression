@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-  <%@ include file="cssfiles.jsp" %>
+<head>
+ <%@ include file="cssfiles.jsp" %>
+ <title>Modifier Matière</title>
+</head>
 
    <div id="db-wrapper">
         <!-- navbar vertical -->
@@ -27,7 +30,7 @@
                         <div class="col-lg-12 col-md-12 col-12">
                             <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
                                 <div class="mb-3 mb-md-0">
-                                    <h1 class="mb-1 h2 fw-bold">Add New Post</h1>
+                                      <h1 class="mb-1 h2 fw-bold">Modifier Matière</h1>
                                     <!-- Breadcrumb -->
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -35,12 +38,14 @@
                                                 <a href="admin-dashboard.html">Dashboard</a>
                                             </li>
                                           
-                                            <li class="breadcrumb-item active" aria-current="page">Ajouter matiere</li>
+                                               <li class="breadcrumb-item active" aria-current="page">Gestion Matières</li>
+                                          
+                                            <li class="breadcrumb-item active" aria-current="page">Modifier Matière</li>
                                         </ol>
                                     </nav>
                                 </div>
                                 <div>
-                                    <a href="/Matiere" class="btn btn-outline-secondary">Retour</a>
+                                    <a href="MatiereServlet" class="btn btn-outline-secondary">Retour</a>
                                 </div>
                             </div>
                         </div>
